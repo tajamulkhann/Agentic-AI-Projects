@@ -1,0 +1,10 @@
+{
+  "allowed_tools": [
+    "load_specs",
+    "planner",
+    "developer",
+    "tester",
+    "reviewer"
+  ],
+  "source": "Tools observed in actual offline fixture runs. This is an advisory model allowlist, not a remote execution permission."
+}

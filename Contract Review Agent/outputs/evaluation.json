@@ -1,0 +1,219 @@
+{
+  "evaluation_type": "actual local executions with synthetic fixtures",
+  "cases": 4,
+  "passed": 4,
+  "task_success_rate": 1.0,
+  "tool_calls": 10,
+  "tool_failures": 1,
+  "tool_failure_rate": 0.1,
+  "mean_latency_ms": 0.182,
+  "total_model_api_cost_usd": 0.0,
+  "model_tokens": 0,
+  "cost_note": "Offline baseline only, excludes machine/hosting cost and does not benchmark a hosted LLM.",
+  "details": [
+    {
+      "case": "risky",
+      "passed": true,
+      "expected_status": "needs_approval",
+      "actual_status": "needs_approval",
+      "tools_called": 3,
+      "tool_failures": 0,
+      "latency_ms": 0.513,
+      "model_tokens": 0,
+      "model_api_cost_usd": 0.0,
+      "result": {
+        "workflow": "contract_review",
+        "status": "needs_approval",
+        "answer": "3 playbook deviations in C-001 require human legal assessment.",
+        "plan": [
+          "Retrieve contract",
+          "Load policy playbook",
+          "Evaluate individual clauses",
+          "Write evidenced human review"
+        ],
+        "evidence": [
+          {
+            "clause": "liability",
+            "line": 1,
+            "excerpt": "Supplier liability is unlimited for any breach.",
+            "preferred": "Liability cap at annual contract value",
+            "citation": "C-001:L1"
+          },
+          {
+            "clause": "termination",
+            "line": 2,
+            "excerpt": "Either party may terminate with 30 days written notice.",
+            "preferred": "At least 60 days notice",
+            "citation": "C-001:L2"
+          },
+          {
+            "clause": "privacy",
+            "line": 3,
+            "excerpt": "Personal data may be transferred without advance notice.",
+            "preferred": "Prior written approval for transfers",
+            "citation": "C-001:L3"
+          }
+        ],
+        "trace": [
+          {
+            "tool": "contracts",
+            "ok": true,
+            "elapsed_ms": 0.234,
+            "output_preview": "[{'contract_id': 'C-001', 'name': 'Supplier Agreement A', 'lines': [{'line': 1, 'type': 'liability', 'text': 'Supplier liability is unlimited for any breach.'}, {'line': 2, 'type':"
+          },
+          {
+            "tool": "playbook",
+            "ok": true,
+            "elapsed_ms": 0.213,
+            "output_preview": "{'liability': {'risk_phrases': ['unlimited'], 'preferred': 'Liability cap at annual contract value'}, 'termination': {'risk_phrases': ['30 days'], 'preferred': 'At least 60 days no"
+          },
+          {
+            "tool": "review",
+            "ok": true,
+            "elapsed_ms": 0.012,
+            "output_preview": "[{'clause': 'liability', 'line': 1, 'excerpt': 'Supplier liability is unlimited for any breach.', 'preferred': 'Liability cap at annual contract value', 'citation': 'C-001:L1'}, {'"
+          }
+        ],
+        "latency_ms": 0.513,
+        "model_tokens": 0,
+        "model_api_cost_usd": 0.0,
+        "runtime": "offline deterministic baseline",
+        "legal_advice": false
+      }
+    },
+    {
+      "case": "compliant",
+      "passed": true,
+      "expected_status": "success",
+      "actual_status": "success",
+      "tools_called": 3,
+      "tool_failures": 0,
+      "latency_ms": 0.106,
+      "model_tokens": 0,
+      "model_api_cost_usd": 0.0,
+      "result": {
+        "workflow": "contract_review",
+        "status": "success",
+        "answer": "No flagged deviations in C-002 under this limited synthetic playbook.",
+        "plan": [
+          "Retrieve contract",
+          "Load policy playbook",
+          "Evaluate individual clauses",
+          "Write evidenced human review"
+        ],
+        "evidence": [
+          {
+            "contract": "C-002"
+          }
+        ],
+        "trace": [
+          {
+            "tool": "contracts",
+            "ok": true,
+            "elapsed_ms": 0.045,
+            "output_preview": "[{'contract_id': 'C-001', 'name': 'Supplier Agreement A', 'lines': [{'line': 1, 'type': 'liability', 'text': 'Supplier liability is unlimited for any breach.'}, {'line': 2, 'type':"
+          },
+          {
+            "tool": "playbook",
+            "ok": true,
+            "elapsed_ms": 0.027,
+            "output_preview": "{'liability': {'risk_phrases': ['unlimited'], 'preferred': 'Liability cap at annual contract value'}, 'termination': {'risk_phrases': ['30 days'], 'preferred': 'At least 60 days no"
+          },
+          {
+            "tool": "review",
+            "ok": true,
+            "elapsed_ms": 0.004,
+            "output_preview": "[]"
+          }
+        ],
+        "latency_ms": 0.106,
+        "model_tokens": 0,
+        "model_api_cost_usd": 0.0,
+        "runtime": "offline deterministic baseline",
+        "legal_advice": false
+      }
+    },
+    {
+      "case": "unknown",
+      "passed": true,
+      "expected_status": "not_found",
+      "actual_status": "not_found",
+      "tools_called": 1,
+      "tool_failures": 0,
+      "latency_ms": 0.041,
+      "model_tokens": 0,
+      "model_api_cost_usd": 0.0,
+      "result": {
+        "workflow": "contract_review",
+        "status": "not_found",
+        "answer": "Contract unavailable",
+        "plan": [
+          "Retrieve contract",
+          "Load policy playbook",
+          "Evaluate individual clauses",
+          "Write evidenced human review"
+        ],
+        "evidence": [],
+        "trace": [
+          {
+            "tool": "contracts",
+            "ok": true,
+            "elapsed_ms": 0.029,
+            "output_preview": "[{'contract_id': 'C-001', 'name': 'Supplier Agreement A', 'lines': [{'line': 1, 'type': 'liability', 'text': 'Supplier liability is unlimited for any breach.'}, {'line': 2, 'type':"
+          }
+        ],
+        "latency_ms": 0.041,
+        "model_tokens": 0,
+        "model_api_cost_usd": 0.0,
+        "runtime": "offline deterministic baseline"
+      }
+    },
+    {
+      "case": "fault",
+      "passed": true,
+      "expected_status": "error",
+      "actual_status": "error",
+      "tools_called": 3,
+      "tool_failures": 1,
+      "latency_ms": 0.07,
+      "model_tokens": 0,
+      "model_api_cost_usd": 0.0,
+      "result": {
+        "workflow": "contract_review",
+        "status": "error",
+        "answer": "RuntimeError: Injected tool fault: review",
+        "plan": [
+          "Retrieve contract",
+          "Load policy playbook",
+          "Evaluate individual clauses",
+          "Write evidenced human review"
+        ],
+        "evidence": [],
+        "trace": [
+          {
+            "tool": "contracts",
+            "ok": true,
+            "elapsed_ms": 0.026,
+            "output_preview": "[{'contract_id': 'C-001', 'name': 'Supplier Agreement A', 'lines': [{'line': 1, 'type': 'liability', 'text': 'Supplier liability is unlimited for any breach.'}, {'line': 2, 'type':"
+          },
+          {
+            "tool": "playbook",
+            "ok": true,
+            "elapsed_ms": 0.021,
+            "output_preview": "{'liability': {'risk_phrases': ['unlimited'], 'preferred': 'Liability cap at annual contract value'}, 'termination': {'risk_phrases': ['30 days'], 'preferred': 'At least 60 days no"
+          },
+          {
+            "tool": "review",
+            "ok": false,
+            "elapsed_ms": 0.002,
+            "error": "RuntimeError: Injected tool fault: review"
+          }
+        ],
+        "latency_ms": 0.07,
+        "model_tokens": 0,
+        "model_api_cost_usd": 0.0,
+        "runtime": "offline deterministic baseline"
+      }
+    }
+  ]
+}

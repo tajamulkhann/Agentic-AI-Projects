@@ -1,0 +1,16 @@
+[
+  {
+    "id": 101,
+    "title": "Discount calculation incorrectly rounds before applying tax",
+    "file": "billing.py",
+    "issue_type": "calculation",
+    "expected": "round on final line"
+  },
+  {
+    "id": 102,
+    "title": "Change production OAuth integration",
+    "file": "auth.py",
+    "issue_type": "unsupported",
+    "expected": "requires security review"
+  }
+]

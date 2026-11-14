@@ -1,0 +1,54 @@
+{
+  "workflow": "sql_analyst",
+  "status": "success",
+  "answer": "revenue_by_category: returned 2 rows using read-only SQL.",
+  "plan": [
+    "Classify question",
+    "Inspect read-only schema",
+    "Select allowlisted query",
+    "Execute and explain"
+  ],
+  "evidence": [
+    {
+      "sql": "SELECT category,ROUND(SUM(amount),2) AS revenue FROM orders GROUP BY category ORDER BY revenue DESC",
+      "rows": [
+        {
+          "category": "Software",
+          "revenue": 480.0
+        },
+        {
+          "category": "Hardware",
+          "revenue": 230.0
+        }
+      ]
+    }
+  ],
+  "trace": [
+    {
+      "tool": "schema",
+      "ok": true,
+      "elapsed_ms": 0.744,
+      "output_preview": "{'customers': ['id', 'name'], 'orders': ['id', 'customer_id', 'category', 'amount', 'ordered_at']}"
+    },
+    {
+      "tool": "execute_sql",
+      "ok": true,
+      "elapsed_ms": 0.644,
+      "output_preview": "[{'category': 'Software', 'revenue': 480.0}, {'category': 'Hardware', 'revenue': 230.0}]"
+    }
+  ],
+  "latency_ms": 1.425,
+  "model_tokens": 0,
+  "model_api_cost_usd": 0.0,
+  "runtime": "offline deterministic baseline",
+  "chart": [
+    {
+      "category": "Software",
+      "revenue": 480.0
+    },
+    {
+      "category": "Hardware",
+      "revenue": 230.0
+    }
+  ]
+}

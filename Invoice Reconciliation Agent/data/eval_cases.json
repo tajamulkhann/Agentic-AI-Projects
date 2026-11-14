@@ -1,0 +1,53 @@
+[
+  {
+    "id": "matched",
+    "request": {
+      "invoice_id": "INV1"
+    },
+    "expected_status": "success",
+    "expected_contains": [
+      "match passed"
+    ]
+  },
+  {
+    "id": "quantity",
+    "request": {
+      "invoice_id": "INV2"
+    },
+    "expected_status": "needs_approval",
+    "expected_contains": [
+      "quantity"
+    ]
+  },
+  {
+    "id": "price",
+    "request": {
+      "invoice_id": "INV3"
+    },
+    "expected_status": "needs_approval",
+    "expected_contains": [
+      "price mismatch"
+    ]
+  },
+  {
+    "id": "no_po",
+    "request": {
+      "invoice_id": "INV4"
+    },
+    "expected_status": "needs_approval",
+    "expected_contains": [
+      "No matching"
+    ]
+  },
+  {
+    "id": "fault",
+    "request": {
+      "invoice_id": "INV1"
+    },
+    "fault": "lookup_receipt",
+    "expected_status": "error",
+    "expected_contains": [
+      "Injected tool fault"
+    ]
+  }
+]

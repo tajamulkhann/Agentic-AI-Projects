@@ -1,0 +1,295 @@
+{
+  "evaluation_type": "actual local executions with synthetic fixtures",
+  "cases": 5,
+  "passed": 5,
+  "task_success_rate": 1.0,
+  "tool_calls": 8,
+  "tool_failures": 1,
+  "tool_failure_rate": 0.125,
+  "mean_latency_ms": 1.262,
+  "total_model_api_cost_usd": 0.0,
+  "model_tokens": 0,
+  "cost_note": "Offline baseline only, excludes machine/hosting cost and does not benchmark a hosted LLM.",
+  "details": [
+    {
+      "case": "category",
+      "passed": true,
+      "expected_status": "success",
+      "actual_status": "success",
+      "tools_called": 2,
+      "tool_failures": 0,
+      "latency_ms": 2.384,
+      "model_tokens": 0,
+      "model_api_cost_usd": 0.0,
+      "result": {
+        "workflow": "sql_analyst",
+        "status": "success",
+        "answer": "revenue_by_category: returned 2 rows using read-only SQL.",
+        "plan": [
+          "Classify question",
+          "Inspect read-only schema",
+          "Select allowlisted query",
+          "Execute and explain"
+        ],
+        "evidence": [
+          {
+            "sql": "SELECT category,ROUND(SUM(amount),2) AS revenue FROM orders GROUP BY category ORDER BY revenue DESC",
+            "rows": [
+              {
+                "category": "Software",
+                "revenue": 480.0
+              },
+              {
+                "category": "Hardware",
+                "revenue": 230.0
+              }
+            ]
+          }
+        ],
+        "trace": [
+          {
+            "tool": "schema",
+            "ok": true,
+            "elapsed_ms": 1.286,
+            "output_preview": "{'customers': ['id', 'name'], 'orders': ['id', 'customer_id', 'category', 'amount', 'ordered_at']}"
+          },
+          {
+            "tool": "execute_sql",
+            "ok": true,
+            "elapsed_ms": 1.05,
+            "output_preview": "[{'category': 'Software', 'revenue': 480.0}, {'category': 'Hardware', 'revenue': 230.0}]"
+          }
+        ],
+        "latency_ms": 2.384,
+        "model_tokens": 0,
+        "model_api_cost_usd": 0.0,
+        "runtime": "offline deterministic baseline",
+        "chart": [
+          {
+            "category": "Software",
+            "revenue": 480.0
+          },
+          {
+            "category": "Hardware",
+            "revenue": 230.0
+          }
+        ]
+      }
+    },
+    {
+      "case": "customer",
+      "passed": true,
+      "expected_status": "success",
+      "actual_status": "success",
+      "tools_called": 2,
+      "tool_failures": 0,
+      "latency_ms": 1.812,
+      "model_tokens": 0,
+      "model_api_cost_usd": 0.0,
+      "result": {
+        "workflow": "sql_analyst",
+        "status": "success",
+        "answer": "revenue_by_customer: returned 3 rows using read-only SQL.",
+        "plan": [
+          "Classify question",
+          "Inspect read-only schema",
+          "Select allowlisted query",
+          "Execute and explain"
+        ],
+        "evidence": [
+          {
+            "sql": "SELECT c.name AS customer, ROUND(SUM(o.amount),2) AS revenue FROM orders o JOIN customers c ON o.customer_id=c.id GROUP BY c.id ORDER BY revenue DESC",
+            "rows": [
+              {
+                "customer": "Rahul",
+                "revenue": 360.0
+              },
+              {
+                "customer": "Asha",
+                "revenue": 200.0
+              },
+              {
+                "customer": "Mina",
+                "revenue": 150.0
+              }
+            ]
+          }
+        ],
+        "trace": [
+          {
+            "tool": "schema",
+            "ok": true,
+            "elapsed_ms": 1.096,
+            "output_preview": "{'customers': ['id', 'name'], 'orders': ['id', 'customer_id', 'category', 'amount', 'ordered_at']}"
+          },
+          {
+            "tool": "execute_sql",
+            "ok": true,
+            "elapsed_ms": 0.676,
+            "output_preview": "[{'customer': 'Rahul', 'revenue': 360.0}, {'customer': 'Asha', 'revenue': 200.0}, {'customer': 'Mina', 'revenue': 150.0}]"
+          }
+        ],
+        "latency_ms": 1.812,
+        "model_tokens": 0,
+        "model_api_cost_usd": 0.0,
+        "runtime": "offline deterministic baseline",
+        "chart": [
+          {
+            "customer": "Rahul",
+            "revenue": 360.0
+          },
+          {
+            "customer": "Asha",
+            "revenue": 200.0
+          },
+          {
+            "customer": "Mina",
+            "revenue": 150.0
+          }
+        ]
+      }
+    },
+    {
+      "case": "monthly",
+      "passed": true,
+      "expected_status": "success",
+      "actual_status": "success",
+      "tools_called": 2,
+      "tool_failures": 0,
+      "latency_ms": 1.345,
+      "model_tokens": 0,
+      "model_api_cost_usd": 0.0,
+      "result": {
+        "workflow": "sql_analyst",
+        "status": "success",
+        "answer": "monthly_revenue: returned 3 rows using read-only SQL.",
+        "plan": [
+          "Classify question",
+          "Inspect read-only schema",
+          "Select allowlisted query",
+          "Execute and explain"
+        ],
+        "evidence": [
+          {
+            "sql": "SELECT substr(ordered_at,1,7) AS month, ROUND(SUM(amount),2) AS revenue FROM orders GROUP BY month ORDER BY month",
+            "rows": [
+              {
+                "month": "2026-01",
+                "revenue": 200.0
+              },
+              {
+                "month": "2026-02",
+                "revenue": 370.0
+              },
+              {
+                "month": "2026-03",
+                "revenue": 140.0
+              }
+            ]
+          }
+        ],
+        "trace": [
+          {
+            "tool": "schema",
+            "ok": true,
+            "elapsed_ms": 0.58,
+            "output_preview": "{'customers': ['id', 'name'], 'orders': ['id', 'customer_id', 'category', 'amount', 'ordered_at']}"
+          },
+          {
+            "tool": "execute_sql",
+            "ok": true,
+            "elapsed_ms": 0.735,
+            "output_preview": "[{'month': '2026-01', 'revenue': 200.0}, {'month': '2026-02', 'revenue': 370.0}, {'month': '2026-03', 'revenue': 140.0}]"
+          }
+        ],
+        "latency_ms": 1.345,
+        "model_tokens": 0,
+        "model_api_cost_usd": 0.0,
+        "runtime": "offline deterministic baseline",
+        "chart": [
+          {
+            "month": "2026-01",
+            "revenue": 200.0
+          },
+          {
+            "month": "2026-02",
+            "revenue": 370.0
+          },
+          {
+            "month": "2026-03",
+            "revenue": 140.0
+          }
+        ]
+      }
+    },
+    {
+      "case": "blocked_write",
+      "passed": true,
+      "expected_status": "rejected",
+      "actual_status": "rejected",
+      "tools_called": 0,
+      "tool_failures": 0,
+      "latency_ms": 0.004,
+      "model_tokens": 0,
+      "model_api_cost_usd": 0.0,
+      "result": {
+        "workflow": "sql_analyst",
+        "status": "rejected",
+        "answer": "Read-only policy: destructive statements are not permitted.",
+        "plan": [
+          "Classify question",
+          "Inspect read-only schema",
+          "Select allowlisted query",
+          "Execute and explain"
+        ],
+        "evidence": [],
+        "trace": [],
+        "latency_ms": 0.004,
+        "model_tokens": 0,
+        "model_api_cost_usd": 0.0,
+        "runtime": "offline deterministic baseline"
+      }
+    },
+    {
+      "case": "fault",
+      "passed": true,
+      "expected_status": "error",
+      "actual_status": "error",
+      "tools_called": 2,
+      "tool_failures": 1,
+      "latency_ms": 0.767,
+      "model_tokens": 0,
+      "model_api_cost_usd": 0.0,
+      "result": {
+        "workflow": "sql_analyst",
+        "status": "error",
+        "answer": "RuntimeError: Injected tool fault: execute_sql",
+        "plan": [
+          "Classify question",
+          "Inspect read-only schema",
+          "Select allowlisted query",
+          "Execute and explain"
+        ],
+        "evidence": [],
+        "trace": [
+          {
+            "tool": "schema",
+            "ok": true,
+            "elapsed_ms": 0.735,
+            "output_preview": "{'customers': ['id', 'name'], 'orders': ['id', 'customer_id', 'category', 'amount', 'ordered_at']}"
+          },
+          {
+            "tool": "execute_sql",
+            "ok": false,
+            "elapsed_ms": 0.003,
+            "error": "RuntimeError: Injected tool fault: execute_sql"
+          }
+        ],
+        "latency_ms": 0.767,
+        "model_tokens": 0,
+        "model_api_cost_usd": 0.0,
+        "runtime": "offline deterministic baseline"
+      }
+    }
+  ]
+}

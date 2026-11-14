@@ -1,0 +1,64 @@
+{
+  "workflow": "invoice_reconciliation",
+  "status": "success",
+  "answer": "Three-way match passed for INV1 ($200.00). No payment executed.",
+  "plan": [
+    "Extract invoice",
+    "Look up PO",
+    "Match goods receipt",
+    "Check tolerance",
+    "Document decision"
+  ],
+  "evidence": [
+    {
+      "invoice": {
+        "invoice_id": "INV1",
+        "po_id": "PO1",
+        "supplier": "North Components",
+        "unit_price": "20",
+        "qty": "10",
+        "amount": "200"
+      },
+      "po": {
+        "po_id": "PO1",
+        "supplier": "North Components",
+        "unit_price": "20",
+        "ordered_qty": "10"
+      },
+      "receipt": {
+        "po_id": "PO1",
+        "received_qty": "10"
+      }
+    }
+  ],
+  "trace": [
+    {
+      "tool": "extract_invoice",
+      "ok": true,
+      "elapsed_ms": 0.062,
+      "output_preview": "[{'invoice_id': 'INV1', 'po_id': 'PO1', 'supplier': 'North Components', 'unit_price': '20', 'qty': '10', 'amount': '200'}, {'invoice_id': 'INV2', 'po_id': 'PO2', 'supplier': 'South"
+    },
+    {
+      "tool": "lookup_po",
+      "ok": true,
+      "elapsed_ms": 0.04,
+      "output_preview": "[{'po_id': 'PO1', 'supplier': 'North Components', 'unit_price': '20', 'ordered_qty': '10'}, {'po_id': 'PO2', 'supplier': 'South Services', 'unit_price': '35', 'ordered_qty': '6'}, "
+    },
+    {
+      "tool": "lookup_receipt",
+      "ok": true,
+      "elapsed_ms": 0.027,
+      "output_preview": "[{'po_id': 'PO1', 'received_qty': '10'}, {'po_id': 'PO2', 'received_qty': '4'}, {'po_id': 'PO3', 'received_qty': '3'}]"
+    },
+    {
+      "tool": "three_way_match",
+      "ok": true,
+      "elapsed_ms": 0.004,
+      "output_preview": "[]"
+    }
+  ],
+  "latency_ms": 0.185,
+  "model_tokens": 0,
+  "model_api_cost_usd": 0.0,
+  "runtime": "offline deterministic baseline"
+}

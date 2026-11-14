@@ -1,0 +1,6 @@
+case,passed,expected_status,actual_status,tools_called,tool_failures,latency_ms,model_tokens,model_api_cost_usd
+baseline,True,success,success,3,0,0.379,0,0.0
+fault_injection,True,success,success,3,0,0.145,0,0.0
+one_trace,True,success,success,3,0,0.09,0,0.0
+missing_trace,True,not_found,not_found,1,0,0.057,0,0.0
+fault,True,error,error,3,1,0.086,0,0.0

@@ -1,0 +1,223 @@
+{
+  "evaluation_type": "actual local executions with synthetic fixtures",
+  "cases": 4,
+  "passed": 4,
+  "task_success_rate": 1.0,
+  "tool_calls": 10,
+  "tool_failures": 1,
+  "tool_failure_rate": 0.1,
+  "mean_latency_ms": 0.16,
+  "total_model_api_cost_usd": 0.0,
+  "model_tokens": 0,
+  "cost_note": "Offline baseline only, excludes machine/hosting cost and does not benchmark a hosted LLM.",
+  "details": [
+    {
+      "case": "emissions_conflict",
+      "passed": true,
+      "expected_status": "success",
+      "actual_status": "success",
+      "tools_called": 3,
+      "tool_failures": 0,
+      "latency_ms": 0.322,
+      "model_tokens": 0,
+      "model_api_cost_usd": 0.0,
+      "result": {
+        "workflow": "deep_research",
+        "status": "success",
+        "answer": "Found 3 synthetic sources. Conflicting claims for emissions_reduction. Citations identify in-bundle evidence only, not independently verified facts.",
+        "plan": [
+          "Retrieve relevant cited documents",
+          "Compare numerical claims",
+          "Produce provenance-aware report"
+        ],
+        "evidence": [
+          {
+            "id": "S1",
+            "url": "synthetic://harbor-lab/report-2026",
+            "excerpt": "Metered test measured 18 percent lower emissions than baseline.",
+            "method": "methodology described"
+          },
+          {
+            "id": "S2",
+            "url": "synthetic://forum/emissions",
+            "excerpt": "Survey-based estimate is 7 percent; fleet size was smaller.",
+            "method": "survey estimate"
+          },
+          {
+            "id": "S3",
+            "url": "synthetic://port/emissions",
+            "excerpt": "Charging infrastructure caused missed utilization windows.",
+            "method": "operational log"
+          }
+        ],
+        "trace": [
+          {
+            "tool": "load_corpus",
+            "ok": true,
+            "elapsed_ms": 0.256,
+            "output_preview": "[{'id': 'S1', 'publisher': 'Harbor Lab', 'date': '2026-02-10', 'url': 'synthetic://harbor-lab/report-2026', 'topic': 'port emissions', 'claim': 'Electric tug pilot reduced port emi"
+          },
+          {
+            "tool": "search",
+            "ok": true,
+            "elapsed_ms": 0.005,
+            "output_preview": "[{'id': 'S1', 'publisher': 'Harbor Lab', 'date': '2026-02-10', 'url': 'synthetic://harbor-lab/report-2026', 'topic': 'port emissions', 'claim': 'Electric tug pilot reduced port emi"
+          },
+          {
+            "tool": "compare",
+            "ok": true,
+            "elapsed_ms": 0.008,
+            "output_preview": "['emissions_reduction']"
+          }
+        ],
+        "latency_ms": 0.322,
+        "model_tokens": 0,
+        "model_api_cost_usd": 0.0,
+        "runtime": "offline deterministic baseline",
+        "conflicts": [
+          "emissions_reduction"
+        ]
+      }
+    },
+    {
+      "case": "delay_research",
+      "passed": true,
+      "expected_status": "success",
+      "actual_status": "success",
+      "tools_called": 3,
+      "tool_failures": 0,
+      "latency_ms": 0.193,
+      "model_tokens": 0,
+      "model_api_cost_usd": 0.0,
+      "result": {
+        "workflow": "deep_research",
+        "status": "success",
+        "answer": "Found 2 synthetic sources. No numeric conflicts detected. Citations identify in-bundle evidence only, not independently verified facts.",
+        "plan": [
+          "Retrieve relevant cited documents",
+          "Compare numerical claims",
+          "Produce provenance-aware report"
+        ],
+        "evidence": [
+          {
+            "id": "S4",
+            "url": "synthetic://freight/delay",
+            "excerpt": "42 percent of synthetic late shipments flagged weather as primary reason.",
+            "method": "sample analysis"
+          },
+          {
+            "id": "S5",
+            "url": "synthetic://ops/delay",
+            "excerpt": "33 percent of synthetic late arrivals had congestion flags.",
+            "method": "model estimate"
+          }
+        ],
+        "trace": [
+          {
+            "tool": "load_corpus",
+            "ok": true,
+            "elapsed_ms": 0.151,
+            "output_preview": "[{'id': 'S1', 'publisher': 'Harbor Lab', 'date': '2026-02-10', 'url': 'synthetic://harbor-lab/report-2026', 'topic': 'port emissions', 'claim': 'Electric tug pilot reduced port emi"
+          },
+          {
+            "tool": "search",
+            "ok": true,
+            "elapsed_ms": 0.004,
+            "output_preview": "[{'id': 'S4', 'publisher': 'Freight Research', 'date': '2026-03-01', 'url': 'synthetic://freight/delay', 'topic': 'supply chain delays', 'claim': 'Weather was the primary cause of "
+          },
+          {
+            "tool": "compare",
+            "ok": true,
+            "elapsed_ms": 0.004,
+            "output_preview": "[]"
+          }
+        ],
+        "latency_ms": 0.193,
+        "model_tokens": 0,
+        "model_api_cost_usd": 0.0,
+        "runtime": "offline deterministic baseline",
+        "conflicts": []
+      }
+    },
+    {
+      "case": "no_sources",
+      "passed": true,
+      "expected_status": "not_found",
+      "actual_status": "not_found",
+      "tools_called": 2,
+      "tool_failures": 0,
+      "latency_ms": 0.07,
+      "model_tokens": 0,
+      "model_api_cost_usd": 0.0,
+      "result": {
+        "workflow": "deep_research",
+        "status": "not_found",
+        "answer": "No matching evidence in the bundled corpus; no external web verification performed.",
+        "plan": [
+          "Retrieve relevant cited documents",
+          "Compare numerical claims",
+          "Produce provenance-aware report"
+        ],
+        "evidence": [],
+        "trace": [
+          {
+            "tool": "load_corpus",
+            "ok": true,
+            "elapsed_ms": 0.05,
+            "output_preview": "[{'id': 'S1', 'publisher': 'Harbor Lab', 'date': '2026-02-10', 'url': 'synthetic://harbor-lab/report-2026', 'topic': 'port emissions', 'claim': 'Electric tug pilot reduced port emi"
+          },
+          {
+            "tool": "search",
+            "ok": true,
+            "elapsed_ms": 0.001,
+            "output_preview": "[]"
+          }
+        ],
+        "latency_ms": 0.07,
+        "model_tokens": 0,
+        "model_api_cost_usd": 0.0,
+        "runtime": "offline deterministic baseline"
+      }
+    },
+    {
+      "case": "search_tool_failure",
+      "passed": true,
+      "expected_status": "error",
+      "actual_status": "error",
+      "tools_called": 2,
+      "tool_failures": 1,
+      "latency_ms": 0.056,
+      "model_tokens": 0,
+      "model_api_cost_usd": 0.0,
+      "result": {
+        "workflow": "deep_research",
+        "status": "error",
+        "answer": "RuntimeError: Injected tool fault: search",
+        "plan": [
+          "Retrieve relevant cited documents",
+          "Compare numerical claims",
+          "Produce provenance-aware report"
+        ],
+        "evidence": [],
+        "trace": [
+          {
+            "tool": "load_corpus",
+            "ok": true,
+            "elapsed_ms": 0.033,
+            "output_preview": "[{'id': 'S1', 'publisher': 'Harbor Lab', 'date': '2026-02-10', 'url': 'synthetic://harbor-lab/report-2026', 'topic': 'port emissions', 'claim': 'Electric tug pilot reduced port emi"
+          },
+          {
+            "tool": "search",
+            "ok": false,
+            "elapsed_ms": 0.002,
+            "error": "RuntimeError: Injected tool fault: search"
+          }
+        ],
+        "latency_ms": 0.056,
+        "model_tokens": 0,
+        "model_api_cost_usd": 0.0,
+        "runtime": "offline deterministic baseline"
+      }
+    }
+  ]
+}

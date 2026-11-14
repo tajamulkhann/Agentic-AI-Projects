@@ -1,0 +1,43 @@
+{
+  "workflow": "multi_agent_delivery",
+  "status": "error",
+  "answer": "RuntimeError: Injected tool fault: tester",
+  "plan": [
+    "Planner: scope acceptance",
+    "Developer: implement",
+    "Tester: isolated regression",
+    "Reviewer: check output",
+    "Handoff"
+  ],
+  "evidence": [],
+  "trace": [
+    {
+      "tool": "load_specs",
+      "ok": true,
+      "elapsed_ms": 0.032,
+      "output_preview": "[{'task_id': 'TASK-1', 'feature': 'discount', 'percent': 10, 'requirement': 'Calculate percentage discount with 2-decimal result', 'acceptance': {'price': 80, 'expected': 72}}, {'t"
+    },
+    {
+      "tool": "planner",
+      "ok": true,
+      "elapsed_ms": 0.001,
+      "output_preview": "{'task': 'TASK-1', 'acceptance': {'price': 80, 'expected': 72}, 'feature': 'discount'}"
+    },
+    {
+      "tool": "developer",
+      "ok": true,
+      "elapsed_ms": 0.007,
+      "output_preview": "def price_after_change(price):\n    return round(price * (1 - 0.1), 2)\n"
+    },
+    {
+      "tool": "tester",
+      "ok": false,
+      "elapsed_ms": 0.003,
+      "error": "RuntimeError: Injected tool fault: tester"
+    }
+  ],
+  "latency_ms": 0.068,
+  "model_tokens": 0,
+  "model_api_cost_usd": 0.0,
+  "runtime": "offline deterministic baseline"
+}

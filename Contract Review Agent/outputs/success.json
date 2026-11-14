@@ -1,0 +1,59 @@
+{
+  "workflow": "contract_review",
+  "status": "needs_approval",
+  "answer": "3 playbook deviations in C-001 require human legal assessment.",
+  "plan": [
+    "Retrieve contract",
+    "Load policy playbook",
+    "Evaluate individual clauses",
+    "Write evidenced human review"
+  ],
+  "evidence": [
+    {
+      "clause": "liability",
+      "line": 1,
+      "excerpt": "Supplier liability is unlimited for any breach.",
+      "preferred": "Liability cap at annual contract value",
+      "citation": "C-001:L1"
+    },
+    {
+      "clause": "termination",
+      "line": 2,
+      "excerpt": "Either party may terminate with 30 days written notice.",
+      "preferred": "At least 60 days notice",
+      "citation": "C-001:L2"
+    },
+    {
+      "clause": "privacy",
+      "line": 3,
+      "excerpt": "Personal data may be transferred without advance notice.",
+      "preferred": "Prior written approval for transfers",
+      "citation": "C-001:L3"
+    }
+  ],
+  "trace": [
+    {
+      "tool": "contracts",
+      "ok": true,
+      "elapsed_ms": 0.043,
+      "output_preview": "[{'contract_id': 'C-001', 'name': 'Supplier Agreement A', 'lines': [{'line': 1, 'type': 'liability', 'text': 'Supplier liability is unlimited for any breach.'}, {'line': 2, 'type':"
+    },
+    {
+      "tool": "playbook",
+      "ok": true,
+      "elapsed_ms": 0.033,
+      "output_preview": "{'liability': {'risk_phrases': ['unlimited'], 'preferred': 'Liability cap at annual contract value'}, 'termination': {'risk_phrases': ['30 days'], 'preferred': 'At least 60 days no"
+    },
+    {
+      "tool": "review",
+      "ok": true,
+      "elapsed_ms": 0.01,
+      "output_preview": "[{'clause': 'liability', 'line': 1, 'excerpt': 'Supplier liability is unlimited for any breach.', 'preferred': 'Liability cap at annual contract value', 'citation': 'C-001:L1'}, {'"
+    }
+  ],
+  "latency_ms": 0.133,
+  "model_tokens": 0,
+  "model_api_cost_usd": 0.0,
+  "runtime": "offline deterministic baseline",
+  "legal_advice": false
+}

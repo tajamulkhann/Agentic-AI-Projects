@@ -1,0 +1,36 @@
+{
+  "workflow": "contract_review",
+  "status": "error",
+  "answer": "RuntimeError: Injected tool fault: review",
+  "plan": [
+    "Retrieve contract",
+    "Load policy playbook",
+    "Evaluate individual clauses",
+    "Write evidenced human review"
+  ],
+  "evidence": [],
+  "trace": [
+    {
+      "tool": "contracts",
+      "ok": true,
+      "elapsed_ms": 0.029,
+      "output_preview": "[{'contract_id': 'C-001', 'name': 'Supplier Agreement A', 'lines': [{'line': 1, 'type': 'liability', 'text': 'Supplier liability is unlimited for any breach.'}, {'line': 2, 'type':"
+    },
+    {
+      "tool": "playbook",
+      "ok": true,
+      "elapsed_ms": 0.025,
+      "output_preview": "{'liability': {'risk_phrases': ['unlimited'], 'preferred': 'Liability cap at annual contract value'}, 'termination': {'risk_phrases': ['30 days'], 'preferred': 'At least 60 days no"
+    },
+    {
+      "tool": "review",
+      "ok": false,
+      "elapsed_ms": 0.002,
+      "error": "RuntimeError: Injected tool fault: review"
+    }
+  ],
+  "latency_ms": 0.108,
+  "model_tokens": 0,
+  "model_api_cost_usd": 0.0,
+  "runtime": "offline deterministic baseline"
+}

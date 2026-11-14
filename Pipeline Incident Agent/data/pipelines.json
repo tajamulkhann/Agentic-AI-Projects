@@ -1,0 +1,21 @@
+[
+  {
+    "pipeline_id": "daily_orders",
+    "depends_on": [
+      "ingest_orders"
+    ],
+    "runbook": "Check upstream ingestion, retry only after approval"
+  },
+  {
+    "pipeline_id": "warehouse_load",
+    "depends_on": [
+      "daily_orders"
+    ],
+    "runbook": "Check warehouse quota and upstream completion"
+  },
+  {
+    "pipeline_id": "ingest_orders",
+    "depends_on": [],
+    "runbook": "Verify source API rate limits and credentials with owner"
+  }
+]

@@ -1,0 +1,5 @@
+case,passed,expected_status,actual_status,tools_called,tool_failures,latency_ms,model_tokens,model_api_cost_usd
+fix,True,success,success,4,0,1902.626,0,0.0
+security,True,needs_approval,needs_approval,2,0,0.094,0,0.0
+unknown,True,not_found,not_found,2,0,0.047,0,0.0
+test_fault,True,error,error,4,1,0.115,0,0.0

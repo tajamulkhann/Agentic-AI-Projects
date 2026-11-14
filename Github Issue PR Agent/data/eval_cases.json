@@ -1,0 +1,44 @@
+[
+  {
+    "id": "fix",
+    "request": {
+      "issue_id": 101
+    },
+    "expected_status": "success",
+    "expected_contains": [
+      "tests passed",
+      "billing.py"
+    ]
+  },
+  {
+    "id": "security",
+    "request": {
+      "issue_id": 102
+    },
+    "expected_status": "needs_approval",
+    "expected_contains": [
+      "human"
+    ]
+  },
+  {
+    "id": "unknown",
+    "request": {
+      "issue_id": 999
+    },
+    "expected_status": "not_found",
+    "expected_contains": [
+      "No matching"
+    ]
+  },
+  {
+    "id": "test_fault",
+    "request": {
+      "issue_id": 101
+    },
+    "fault": "run_tests",
+    "expected_status": "error",
+    "expected_contains": [
+      "Injected tool fault"
+    ]
+  }
+]

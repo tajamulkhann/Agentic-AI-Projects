@@ -1,0 +1,57 @@
+{
+  "workflow": "deep_research",
+  "status": "success",
+  "answer": "Found 3 synthetic sources. Conflicting claims for emissions_reduction. Citations identify in-bundle evidence only, not independently verified facts.",
+  "plan": [
+    "Retrieve relevant cited documents",
+    "Compare numerical claims",
+    "Produce provenance-aware report"
+  ],
+  "evidence": [
+    {
+      "id": "S1",
+      "url": "synthetic://harbor-lab/report-2026",
+      "excerpt": "Metered test measured 18 percent lower emissions than baseline.",
+      "method": "methodology described"
+    },
+    {
+      "id": "S2",
+      "url": "synthetic://forum/emissions",
+      "excerpt": "Survey-based estimate is 7 percent; fleet size was smaller.",
+      "method": "survey estimate"
+    },
+    {
+      "id": "S3",
+      "url": "synthetic://port/emissions",
+      "excerpt": "Charging infrastructure caused missed utilization windows.",
+      "method": "operational log"
+    }
+  ],
+  "trace": [
+    {
+      "tool": "load_corpus",
+      "ok": true,
+      "elapsed_ms": 0.062,
+      "output_preview": "[{'id': 'S1', 'publisher': 'Harbor Lab', 'date': '2026-02-10', 'url': 'synthetic://harbor-lab/report-2026', 'topic': 'port emissions', 'claim': 'Electric tug pilot reduced port emi"
+    },
+    {
+      "tool": "search",
+      "ok": true,
+      "elapsed_ms": 0.004,
+      "output_preview": "[{'id': 'S1', 'publisher': 'Harbor Lab', 'date': '2026-02-10', 'url': 'synthetic://harbor-lab/report-2026', 'topic': 'port emissions', 'claim': 'Electric tug pilot reduced port emi"
+    },
+    {
+      "tool": "compare",
+      "ok": true,
+      "elapsed_ms": 0.007,
+      "output_preview": "['emissions_reduction']"
+    }
+  ],
+  "latency_ms": 0.126,
+  "model_tokens": 0,
+  "model_api_cost_usd": 0.0,
+  "runtime": "offline deterministic baseline",
+  "conflicts": [
+    "emissions_reduction"
+  ]
+}

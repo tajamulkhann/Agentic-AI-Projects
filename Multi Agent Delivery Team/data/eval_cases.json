@@ -1,0 +1,53 @@
+[
+  {
+    "id": "discount",
+    "request": {
+      "task_id": "TASK-1"
+    },
+    "expected_status": "success",
+    "expected_contains": [
+      "tests passed"
+    ]
+  },
+  {
+    "id": "tax",
+    "request": {
+      "task_id": "TASK-2"
+    },
+    "expected_status": "success",
+    "expected_contains": [
+      "price_after_change"
+    ]
+  },
+  {
+    "id": "unsafe",
+    "request": {
+      "task_id": "TASK-3"
+    },
+    "expected_status": "needs_approval",
+    "expected_contains": [
+      "architecture"
+    ]
+  },
+  {
+    "id": "missing",
+    "request": {
+      "task_id": "TASK-X"
+    },
+    "expected_status": "not_found",
+    "expected_contains": [
+      "not found"
+    ]
+  },
+  {
+    "id": "failure",
+    "request": {
+      "task_id": "TASK-1"
+    },
+    "fault": "tester",
+    "expected_status": "error",
+    "expected_contains": [
+      "Injected tool fault"
+    ]
+  }
+]

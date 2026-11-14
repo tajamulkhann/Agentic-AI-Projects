@@ -1,0 +1,44 @@
+[
+  {
+    "contract_id": "C-001",
+    "name": "Supplier Agreement A",
+    "lines": [
+      {
+        "line": 1,
+        "type": "liability",
+        "text": "Supplier liability is unlimited for any breach."
+      },
+      {
+        "line": 2,
+        "type": "termination",
+        "text": "Either party may terminate with 30 days written notice."
+      },
+      {
+        "line": 3,
+        "type": "privacy",
+        "text": "Personal data may be transferred without advance notice."
+      }
+    ]
+  },
+  {
+    "contract_id": "C-002",
+    "name": "Supplier Agreement B",
+    "lines": [
+      {
+        "line": 1,
+        "type": "liability",
+        "text": "Liability is capped at the annual contract value."
+      },
+      {
+        "line": 2,
+        "type": "termination",
+        "text": "Either party may terminate with 60 days written notice."
+      },
+      {
+        "line": 3,
+        "type": "privacy",
+        "text": "Transfers require prior written approval."
+      }
+    ]
+  }
+]

@@ -1,0 +1,7 @@
+{
+  "allowed_tools": [
+    "schema",
+    "execute_sql"
+  ],
+  "source": "Tools observed in actual offline fixture runs. This is an advisory model allowlist, not a remote execution permission."
+}

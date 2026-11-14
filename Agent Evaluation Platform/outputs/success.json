@@ -1,0 +1,129 @@
+{
+  "workflow": "evaluation_platform",
+  "status": "success",
+  "answer": "Baseline success 75%; candidate success 75%. Archived synthetic traces; this run replays scoring, not external agents.",
+  "plan": [
+    "Load archived traces",
+    "Validate required tools",
+    "Replay candidate with injected failure",
+    "Compare success and spend"
+  ],
+  "evidence": [
+    {
+      "baseline": {
+        "evaluated": 4,
+        "task_success_rate": 0.75,
+        "tool_failure_rate": 0.0833,
+        "mean_latency_ms": 15.925,
+        "model_api_cost_usd": 0,
+        "details": [
+          {
+            "trace_id": "research-reliable",
+            "success": true,
+            "tool_failures": 0,
+            "tool_calls": 3,
+            "latency_ms": 22.4,
+            "model_api_cost_usd": 0,
+            "expected_status": "success"
+          },
+          {
+            "trace_id": "sql-reliable",
+            "success": true,
+            "tool_failures": 0,
+            "tool_calls": 2,
+            "latency_ms": 11.8,
+            "model_api_cost_usd": 0,
+            "expected_status": "success"
+          },
+          {
+            "trace_id": "billing-failed",
+            "success": false,
+            "tool_failures": 1,
+            "tool_calls": 3,
+            "latency_ms": 13.5,
+            "model_api_cost_usd": 0,
+            "expected_status": "error"
+          },
+          {
+            "trace_id": "support-approval",
+            "success": true,
+            "tool_failures": 0,
+            "tool_calls": 4,
+            "latency_ms": 16.0,
+            "model_api_cost_usd": 0,
+            "expected_status": "needs_approval"
+          }
+        ]
+      },
+      "candidate": {
+        "evaluated": 4,
+        "task_success_rate": 0.75,
+        "tool_failure_rate": 0.0833,
+        "mean_latency_ms": 15.925,
+        "model_api_cost_usd": 0,
+        "details": [
+          {
+            "trace_id": "research-reliable",
+            "success": true,
+            "tool_failures": 0,
+            "tool_calls": 3,
+            "latency_ms": 22.4,
+            "model_api_cost_usd": 0,
+            "expected_status": "success"
+          },
+          {
+            "trace_id": "sql-reliable",
+            "success": true,
+            "tool_failures": 0,
+            "tool_calls": 2,
+            "latency_ms": 11.8,
+            "model_api_cost_usd": 0,
+            "expected_status": "success"
+          },
+          {
+            "trace_id": "billing-failed",
+            "success": false,
+            "tool_failures": 1,
+            "tool_calls": 3,
+            "latency_ms": 13.5,
+            "model_api_cost_usd": 0,
+            "expected_status": "error"
+          },
+          {
+            "trace_id": "support-approval",
+            "success": true,
+            "tool_failures": 0,
+            "tool_calls": 4,
+            "latency_ms": 16.0,
+            "model_api_cost_usd": 0,
+            "expected_status": "needs_approval"
+          }
+        ]
+      }
+    }
+  ],
+  "trace": [
+    {
+      "tool": "load_benchmark",
+      "ok": true,
+      "elapsed_ms": 0.055,
+      "output_preview": "[{'id': 'research-reliable', 'task': 'research', 'expected_tools': ['load_corpus', 'search', 'compare'], 'events': [{'tool': 'load_corpus', 'ok': True}, {'tool': 'search', 'ok': Tr"
+    },
+    {
+      "tool": "baseline",
+      "ok": true,
+      "elapsed_ms": 0.044,
+      "output_preview": "{'evaluated': 4, 'task_success_rate': 0.75, 'tool_failure_rate': 0.0833, 'mean_latency_ms': 15.925, 'model_api_cost_usd': 0, 'details': [{'trace_id': 'research-reliable', 'success'"
+    },
+    {
+      "tool": "replay",
+      "ok": true,
+      "elapsed_ms": 0.019,
+      "output_preview": "{'evaluated': 4, 'task_success_rate': 0.75, 'tool_failure_rate': 0.0833, 'mean_latency_ms': 15.925, 'model_api_cost_usd': 0, 'details': [{'trace_id': 'research-reliable', 'success'"
+    }
+  ],
+  "latency_ms": 0.317,
+  "model_tokens": 0,
+  "model_api_cost_usd": 0.0,
+  "runtime": "offline deterministic baseline"
+}

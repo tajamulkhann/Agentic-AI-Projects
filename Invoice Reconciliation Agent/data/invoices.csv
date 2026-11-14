@@ -1,0 +1,5 @@
+invoice_id,po_id,supplier,unit_price,qty,amount
+INV1,PO1,North Components,20,10,200
+INV2,PO2,South Services,35,6,210
+INV3,PO3,East Parts,12,3,36
+INV4,PO-X,Unknown,99,1,99

@@ -1,0 +1,207 @@
+{
+  "evaluation_type": "actual local executions with synthetic fixtures",
+  "cases": 4,
+  "passed": 4,
+  "task_success_rate": 1.0,
+  "tool_calls": 9,
+  "tool_failures": 1,
+  "tool_failure_rate": 0.1111,
+  "mean_latency_ms": 0.269,
+  "total_model_api_cost_usd": 0.0,
+  "model_tokens": 0,
+  "cost_note": "Offline baseline only, excludes machine/hosting cost and does not benchmark a hosted LLM.",
+  "details": [
+    {
+      "case": "prepared",
+      "passed": true,
+      "expected_status": "needs_approval",
+      "actual_status": "needs_approval",
+      "tools_called": 3,
+      "tool_failures": 0,
+      "latency_ms": 0.64,
+      "model_tokens": 0,
+      "model_api_cost_usd": 0.0,
+      "result": {
+        "workflow": "browser_workflow",
+        "status": "needs_approval",
+        "answer": "Form fill plan prepared; awaiting explicit submit approval. No submission performed.",
+        "plan": [
+          "Inspect local form fields",
+          "Load supplier record",
+          "Validate each required field",
+          "Prepare fill plan",
+          "Pause before submission"
+        ],
+        "evidence": [
+          {
+            "selector": "[name='supplier_name']",
+            "value": "Acme Parts"
+          },
+          {
+            "selector": "[name='email']",
+            "value": "sales@acme.example"
+          },
+          {
+            "selector": "[name='country']",
+            "value": "India"
+          },
+          {
+            "selector": "[name='tax_id']",
+            "value": "GST-DEMO-001"
+          }
+        ],
+        "trace": [
+          {
+            "tool": "inspect_form",
+            "ok": true,
+            "elapsed_ms": 0.365,
+            "output_preview": "['supplier_name', 'email', 'country', 'tax_id']"
+          },
+          {
+            "tool": "suppliers",
+            "ok": true,
+            "elapsed_ms": 0.229,
+            "output_preview": "[{'supplier_id': 'SUP-1', 'supplier_name': 'Acme Parts', 'email': 'sales@acme.example', 'country': 'India', 'tax_id': 'GST-DEMO-001'}, {'supplier_id': 'SUP-2', 'supplier_name': 'Ba"
+          },
+          {
+            "tool": "validate",
+            "ok": true,
+            "elapsed_ms": 0.004,
+            "output_preview": "[]"
+          }
+        ],
+        "latency_ms": 0.64,
+        "model_tokens": 0,
+        "model_api_cost_usd": 0.0,
+        "runtime": "offline deterministic baseline",
+        "submitted": false
+      }
+    },
+    {
+      "case": "invalid",
+      "passed": true,
+      "expected_status": "rejected",
+      "actual_status": "rejected",
+      "tools_called": 3,
+      "tool_failures": 0,
+      "latency_ms": 0.255,
+      "model_tokens": 0,
+      "model_api_cost_usd": 0.0,
+      "result": {
+        "workflow": "browser_workflow",
+        "status": "rejected",
+        "answer": "Missing: tax_id. No browser submission.",
+        "plan": [
+          "Inspect local form fields",
+          "Load supplier record",
+          "Validate each required field",
+          "Prepare fill plan",
+          "Pause before submission"
+        ],
+        "evidence": [],
+        "trace": [
+          {
+            "tool": "inspect_form",
+            "ok": true,
+            "elapsed_ms": 0.162,
+            "output_preview": "['supplier_name', 'email', 'country', 'tax_id']"
+          },
+          {
+            "tool": "suppliers",
+            "ok": true,
+            "elapsed_ms": 0.035,
+            "output_preview": "[{'supplier_id': 'SUP-1', 'supplier_name': 'Acme Parts', 'email': 'sales@acme.example', 'country': 'India', 'tax_id': 'GST-DEMO-001'}, {'supplier_id': 'SUP-2', 'supplier_name': 'Ba"
+          },
+          {
+            "tool": "validate",
+            "ok": true,
+            "elapsed_ms": 0.003,
+            "output_preview": "['Missing: tax_id']"
+          }
+        ],
+        "latency_ms": 0.255,
+        "model_tokens": 0,
+        "model_api_cost_usd": 0.0,
+        "runtime": "offline deterministic baseline"
+      }
+    },
+    {
+      "case": "unknown",
+      "passed": true,
+      "expected_status": "not_found",
+      "actual_status": "not_found",
+      "tools_called": 2,
+      "tool_failures": 0,
+      "latency_ms": 0.17,
+      "model_tokens": 0,
+      "model_api_cost_usd": 0.0,
+      "result": {
+        "workflow": "browser_workflow",
+        "status": "not_found",
+        "answer": "Supplier not found",
+        "plan": [
+          "Inspect local form fields",
+          "Load supplier record",
+          "Validate each required field",
+          "Prepare fill plan",
+          "Pause before submission"
+        ],
+        "evidence": [],
+        "trace": [
+          {
+            "tool": "inspect_form",
+            "ok": true,
+            "elapsed_ms": 0.124,
+            "output_preview": "['supplier_name', 'email', 'country', 'tax_id']"
+          },
+          {
+            "tool": "suppliers",
+            "ok": true,
+            "elapsed_ms": 0.03,
+            "output_preview": "[{'supplier_id': 'SUP-1', 'supplier_name': 'Acme Parts', 'email': 'sales@acme.example', 'country': 'India', 'tax_id': 'GST-DEMO-001'}, {'supplier_id': 'SUP-2', 'supplier_name': 'Ba"
+          }
+        ],
+        "latency_ms": 0.17,
+        "model_tokens": 0,
+        "model_api_cost_usd": 0.0,
+        "runtime": "offline deterministic baseline"
+      }
+    },
+    {
+      "case": "fault",
+      "passed": true,
+      "expected_status": "error",
+      "actual_status": "error",
+      "tools_called": 1,
+      "tool_failures": 1,
+      "latency_ms": 0.011,
+      "model_tokens": 0,
+      "model_api_cost_usd": 0.0,
+      "result": {
+        "workflow": "browser_workflow",
+        "status": "error",
+        "answer": "RuntimeError: Injected tool fault: inspect_form",
+        "plan": [
+          "Inspect local form fields",
+          "Load supplier record",
+          "Validate each required field",
+          "Prepare fill plan",
+          "Pause before submission"
+        ],
+        "evidence": [],
+        "trace": [
+          {
+            "tool": "inspect_form",
+            "ok": false,
+            "elapsed_ms": 0.002,
+            "error": "RuntimeError: Injected tool fault: inspect_form"
+          }
+        ],
+        "latency_ms": 0.011,
+        "model_tokens": 0,
+        "model_api_cost_usd": 0.0,
+        "runtime": "offline deterministic baseline"
+      }
+    }
+  ]
+}

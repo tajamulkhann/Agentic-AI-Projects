@@ -1,0 +1,36 @@
+{
+  "workflow": "evaluation_platform",
+  "status": "error",
+  "answer": "RuntimeError: Injected tool fault: replay",
+  "plan": [
+    "Load archived traces",
+    "Validate required tools",
+    "Replay candidate with injected failure",
+    "Compare success and spend"
+  ],
+  "evidence": [],
+  "trace": [
+    {
+      "tool": "load_benchmark",
+      "ok": true,
+      "elapsed_ms": 0.034,
+      "output_preview": "[{'id': 'research-reliable', 'task': 'research', 'expected_tools': ['load_corpus', 'search', 'compare'], 'events': [{'tool': 'load_corpus', 'ok': True}, {'tool': 'search', 'ok': Tr"
+    },
+    {
+      "tool": "baseline",
+      "ok": true,
+      "elapsed_ms": 0.017,
+      "output_preview": "{'evaluated': 4, 'task_success_rate': 0.75, 'tool_failure_rate': 0.0833, 'mean_latency_ms': 15.925, 'model_api_cost_usd': 0, 'details': [{'trace_id': 'research-reliable', 'success'"
+    },
+    {
+      "tool": "replay",
+      "ok": false,
+      "elapsed_ms": 0.002,
+      "error": "RuntimeError: Injected tool fault: replay"
+    }
+  ],
+  "latency_ms": 0.087,
+  "model_tokens": 0,
+  "model_api_cost_usd": 0.0,
+  "runtime": "offline deterministic baseline"
+}

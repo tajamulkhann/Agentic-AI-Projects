@@ -1,0 +1,5 @@
+case,passed,expected_status,actual_status,tools_called,tool_failures,latency_ms,model_tokens,model_api_cost_usd
+emissions_conflict,True,success,success,3,0,0.322,0,0.0
+delay_research,True,success,success,3,0,0.193,0,0.0
+no_sources,True,not_found,not_found,2,0,0.07,0,0.0
+search_tool_failure,True,error,error,2,1,0.056,0,0.0

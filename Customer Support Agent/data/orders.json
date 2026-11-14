@@ -1,0 +1,26 @@
+[
+  {
+    "order_id": "ORD-100",
+    "customer_id": "C1",
+    "status": "delivered",
+    "total": 65,
+    "days_since_delivery": 5,
+    "item": "headphones"
+  },
+  {
+    "order_id": "ORD-101",
+    "customer_id": "C2",
+    "status": "delivered",
+    "total": 230,
+    "days_since_delivery": 44,
+    "item": "monitor"
+  },
+  {
+    "order_id": "ORD-102",
+    "customer_id": "C3",
+    "status": "in_transit",
+    "total": 48,
+    "days_since_delivery": null,
+    "item": "keyboard"
+  }
+]

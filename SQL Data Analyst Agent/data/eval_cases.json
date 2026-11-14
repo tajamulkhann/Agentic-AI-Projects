@@ -1,0 +1,55 @@
+[
+  {
+    "id": "category",
+    "request": {
+      "question": "Show revenue by category"
+    },
+    "expected_status": "success",
+    "expected_contains": [
+      "Software",
+      "480"
+    ]
+  },
+  {
+    "id": "customer",
+    "request": {
+      "question": "Revenue by customer please"
+    },
+    "expected_status": "success",
+    "expected_contains": [
+      "Rahul",
+      "360"
+    ]
+  },
+  {
+    "id": "monthly",
+    "request": {
+      "question": "monthly revenue"
+    },
+    "expected_status": "success",
+    "expected_contains": [
+      "2026-01"
+    ]
+  },
+  {
+    "id": "blocked_write",
+    "request": {
+      "question": "DELETE FROM orders"
+    },
+    "expected_status": "rejected",
+    "expected_contains": [
+      "Read-only"
+    ]
+  },
+  {
+    "id": "fault",
+    "request": {
+      "question": "revenue by category"
+    },
+    "fault": "execute_sql",
+    "expected_status": "error",
+    "expected_contains": [
+      "Injected tool fault"
+    ]
+  }
+]

@@ -1,0 +1,53 @@
+[
+  {
+    "id": "quota",
+    "request": {
+      "incident_id": "INC-1"
+    },
+    "expected_status": "needs_approval",
+    "expected_contains": [
+      "Storage quota"
+    ]
+  },
+  {
+    "id": "rate",
+    "request": {
+      "incident_id": "INC-2"
+    },
+    "expected_status": "needs_approval",
+    "expected_contains": [
+      "rate limit"
+    ]
+  },
+  {
+    "id": "healthy",
+    "request": {
+      "incident_id": "INC-3"
+    },
+    "expected_status": "success",
+    "expected_contains": [
+      "No active failure"
+    ]
+  },
+  {
+    "id": "missing",
+    "request": {
+      "incident_id": "INC-X"
+    },
+    "expected_status": "not_found",
+    "expected_contains": [
+      "not found"
+    ]
+  },
+  {
+    "id": "fault",
+    "request": {
+      "incident_id": "INC-2"
+    },
+    "fault": "lineage",
+    "expected_status": "error",
+    "expected_contains": [
+      "Injected tool fault"
+    ]
+  }
+]

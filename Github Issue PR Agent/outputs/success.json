@@ -1,0 +1,54 @@
+{
+  "workflow": "issue_to_pr",
+  "status": "success",
+  "answer": "Patch ready for review for issue #101; tests passed. No remote PR created.",
+  "plan": [
+    "Select local issue",
+    "Inspect allowlisted fixture source",
+    "Propose minimal patch",
+    "Run tests in a temporary copy",
+    "Draft PR, no push"
+  ],
+  "evidence": [
+    {
+      "patch": "--- a/billing.py\n+++ b/billing.py\n@@ -1,4 +1,4 @@\n \"\"\"Buggy demo implementation, never a live checkout system.\"\"\"\n def total_with_tax(price,discount_rate,tax_rate):\n-    discounted=round(price*(1-discount_rate),2)\n+    discounted=price*(1-discount_rate)\n     return round(discounted*(1+tax_rate),2)\n",
+      "test_output": {
+        "passed": true,
+        "returncode": 0,
+        "stdout": "..                                                                       [100%]\n2 passed in 0.05s\n",
+        "stderr": ""
+      }
+    }
+  ],
+  "trace": [
+    {
+      "tool": "issues",
+      "ok": true,
+      "elapsed_ms": 0.038,
+      "output_preview": "[{'id': 101, 'title': 'Discount calculation incorrectly rounds before applying tax', 'file': 'billing.py', 'issue_type': 'calculation', 'expected': 'round on final line'}, {'id': 1"
+    },
+    {
+      "tool": "lookup_issue",
+      "ok": true,
+      "elapsed_ms": 0.004,
+      "output_preview": "{'id': 101, 'title': 'Discount calculation incorrectly rounds before applying tax', 'file': 'billing.py', 'issue_type': 'calculation', 'expected': 'round on final line'}"
+    },
+    {
+      "tool": "propose_patch",
+      "ok": true,
+      "elapsed_ms": 0.003,
+      "output_preview": "\"\"\"Buggy demo implementation, never a live checkout system.\"\"\"\ndef total_with_tax(price,discount_rate,tax_rate):\n    discounted=price*(1-discount_rate)\n    return round(discounted*"
+    },
+    {
+      "tool": "run_tests",
+      "ok": true,
+      "elapsed_ms": 2659.268,
+      "output_preview": "{'passed': True, 'returncode': 0, 'stdout': '..                                                                       [100%]\\n2 passed in 0.05s\\n', 'stderr': ''}"
+    }
+  ],
+  "latency_ms": 2659.77,
+  "model_tokens": 0,
+  "model_api_cost_usd": 0.0,
+  "runtime": "offline deterministic baseline",
+  "pr_created": false
+}

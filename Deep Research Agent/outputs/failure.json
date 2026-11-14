@@ -1,0 +1,29 @@
+{
+  "workflow": "deep_research",
+  "status": "error",
+  "answer": "RuntimeError: Injected tool fault: search",
+  "plan": [
+    "Retrieve relevant cited documents",
+    "Compare numerical claims",
+    "Produce provenance-aware report"
+  ],
+  "evidence": [],
+  "trace": [
+    {
+      "tool": "load_corpus",
+      "ok": true,
+      "elapsed_ms": 0.062,
+      "output_preview": "[{'id': 'S1', 'publisher': 'Harbor Lab', 'date': '2026-02-10', 'url': 'synthetic://harbor-lab/report-2026', 'topic': 'port emissions', 'claim': 'Electric tug pilot reduced port emi"
+    },
+    {
+      "tool": "search",
+      "ok": false,
+      "elapsed_ms": 0.002,
+      "error": "RuntimeError: Injected tool fault: search"
+    }
+  ],
+  "latency_ms": 0.085,
+  "model_tokens": 0,
+  "model_api_cost_usd": 0.0,
+  "runtime": "offline deterministic baseline"
+}

@@ -1,0 +1,13 @@
+{
+  "refund": {
+    "window_days": 30,
+    "requires_approval": true,
+    "rule": "Returns within 30 days of delivery can be proposed for refund after human review."
+  },
+  "shipping": {
+    "rule": "In-transit orders require tracking review, not immediate refund."
+  },
+  "replacement": {
+    "rule": "Replacements require staff review before committing."
+  }
+}

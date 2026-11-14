@@ -1,0 +1,313 @@
+{
+  "evaluation_type": "actual local executions with synthetic fixtures",
+  "cases": 5,
+  "passed": 5,
+  "task_success_rate": 1.0,
+  "tool_calls": 17,
+  "tool_failures": 1,
+  "tool_failure_rate": 0.0588,
+  "mean_latency_ms": 0.228,
+  "total_model_api_cost_usd": 0.0,
+  "model_tokens": 0,
+  "cost_note": "Offline baseline only, excludes machine/hosting cost and does not benchmark a hosted LLM.",
+  "details": [
+    {
+      "case": "matched",
+      "passed": true,
+      "expected_status": "success",
+      "actual_status": "success",
+      "tools_called": 4,
+      "tool_failures": 0,
+      "latency_ms": 0.709,
+      "model_tokens": 0,
+      "model_api_cost_usd": 0.0,
+      "result": {
+        "workflow": "invoice_reconciliation",
+        "status": "success",
+        "answer": "Three-way match passed for INV1 ($200.00). No payment executed.",
+        "plan": [
+          "Extract invoice",
+          "Look up PO",
+          "Match goods receipt",
+          "Check tolerance",
+          "Document decision"
+        ],
+        "evidence": [
+          {
+            "invoice": {
+              "invoice_id": "INV1",
+              "po_id": "PO1",
+              "supplier": "North Components",
+              "unit_price": "20",
+              "qty": "10",
+              "amount": "200"
+            },
+            "po": {
+              "po_id": "PO1",
+              "supplier": "North Components",
+              "unit_price": "20",
+              "ordered_qty": "10"
+            },
+            "receipt": {
+              "po_id": "PO1",
+              "received_qty": "10"
+            }
+          }
+        ],
+        "trace": [
+          {
+            "tool": "extract_invoice",
+            "ok": true,
+            "elapsed_ms": 0.25,
+            "output_preview": "[{'invoice_id': 'INV1', 'po_id': 'PO1', 'supplier': 'North Components', 'unit_price': '20', 'qty': '10', 'amount': '200'}, {'invoice_id': 'INV2', 'po_id': 'PO2', 'supplier': 'South"
+          },
+          {
+            "tool": "lookup_po",
+            "ok": true,
+            "elapsed_ms": 0.196,
+            "output_preview": "[{'po_id': 'PO1', 'supplier': 'North Components', 'unit_price': '20', 'ordered_qty': '10'}, {'po_id': 'PO2', 'supplier': 'South Services', 'unit_price': '35', 'ordered_qty': '6'}, "
+          },
+          {
+            "tool": "lookup_receipt",
+            "ok": true,
+            "elapsed_ms": 0.191,
+            "output_preview": "[{'po_id': 'PO1', 'received_qty': '10'}, {'po_id': 'PO2', 'received_qty': '4'}, {'po_id': 'PO3', 'received_qty': '3'}]"
+          },
+          {
+            "tool": "three_way_match",
+            "ok": true,
+            "elapsed_ms": 0.005,
+            "output_preview": "[]"
+          }
+        ],
+        "latency_ms": 0.709,
+        "model_tokens": 0,
+        "model_api_cost_usd": 0.0,
+        "runtime": "offline deterministic baseline"
+      }
+    },
+    {
+      "case": "quantity",
+      "passed": true,
+      "expected_status": "needs_approval",
+      "actual_status": "needs_approval",
+      "tools_called": 4,
+      "tool_failures": 0,
+      "latency_ms": 0.171,
+      "model_tokens": 0,
+      "model_api_cost_usd": 0.0,
+      "result": {
+        "workflow": "invoice_reconciliation",
+        "status": "needs_approval",
+        "answer": "Discrepancy: invoiced quantity exceeds received. No payment action executed.",
+        "plan": [
+          "Extract invoice",
+          "Look up PO",
+          "Match goods receipt",
+          "Check tolerance",
+          "Document decision"
+        ],
+        "evidence": [
+          {
+            "invoice_id": "INV2",
+            "issues": [
+              "invoiced quantity exceeds received"
+            ]
+          }
+        ],
+        "trace": [
+          {
+            "tool": "extract_invoice",
+            "ok": true,
+            "elapsed_ms": 0.043,
+            "output_preview": "[{'invoice_id': 'INV1', 'po_id': 'PO1', 'supplier': 'North Components', 'unit_price': '20', 'qty': '10', 'amount': '200'}, {'invoice_id': 'INV2', 'po_id': 'PO2', 'supplier': 'South"
+          },
+          {
+            "tool": "lookup_po",
+            "ok": true,
+            "elapsed_ms": 0.057,
+            "output_preview": "[{'po_id': 'PO1', 'supplier': 'North Components', 'unit_price': '20', 'ordered_qty': '10'}, {'po_id': 'PO2', 'supplier': 'South Services', 'unit_price': '35', 'ordered_qty': '6'}, "
+          },
+          {
+            "tool": "lookup_receipt",
+            "ok": true,
+            "elapsed_ms": 0.029,
+            "output_preview": "[{'po_id': 'PO1', 'received_qty': '10'}, {'po_id': 'PO2', 'received_qty': '4'}, {'po_id': 'PO3', 'received_qty': '3'}]"
+          },
+          {
+            "tool": "three_way_match",
+            "ok": true,
+            "elapsed_ms": 0.005,
+            "output_preview": "['invoiced quantity exceeds received']"
+          }
+        ],
+        "latency_ms": 0.171,
+        "model_tokens": 0,
+        "model_api_cost_usd": 0.0,
+        "runtime": "offline deterministic baseline"
+      }
+    },
+    {
+      "case": "price",
+      "passed": true,
+      "expected_status": "needs_approval",
+      "actual_status": "needs_approval",
+      "tools_called": 4,
+      "tool_failures": 0,
+      "latency_ms": 0.111,
+      "model_tokens": 0,
+      "model_api_cost_usd": 0.0,
+      "result": {
+        "workflow": "invoice_reconciliation",
+        "status": "needs_approval",
+        "answer": "Discrepancy: price mismatch. No payment action executed.",
+        "plan": [
+          "Extract invoice",
+          "Look up PO",
+          "Match goods receipt",
+          "Check tolerance",
+          "Document decision"
+        ],
+        "evidence": [
+          {
+            "invoice_id": "INV3",
+            "issues": [
+              "price mismatch"
+            ]
+          }
+        ],
+        "trace": [
+          {
+            "tool": "extract_invoice",
+            "ok": true,
+            "elapsed_ms": 0.032,
+            "output_preview": "[{'invoice_id': 'INV1', 'po_id': 'PO1', 'supplier': 'North Components', 'unit_price': '20', 'qty': '10', 'amount': '200'}, {'invoice_id': 'INV2', 'po_id': 'PO2', 'supplier': 'South"
+          },
+          {
+            "tool": "lookup_po",
+            "ok": true,
+            "elapsed_ms": 0.027,
+            "output_preview": "[{'po_id': 'PO1', 'supplier': 'North Components', 'unit_price': '20', 'ordered_qty': '10'}, {'po_id': 'PO2', 'supplier': 'South Services', 'unit_price': '35', 'ordered_qty': '6'}, "
+          },
+          {
+            "tool": "lookup_receipt",
+            "ok": true,
+            "elapsed_ms": 0.022,
+            "output_preview": "[{'po_id': 'PO1', 'received_qty': '10'}, {'po_id': 'PO2', 'received_qty': '4'}, {'po_id': 'PO3', 'received_qty': '3'}]"
+          },
+          {
+            "tool": "three_way_match",
+            "ok": true,
+            "elapsed_ms": 0.003,
+            "output_preview": "['price mismatch']"
+          }
+        ],
+        "latency_ms": 0.111,
+        "model_tokens": 0,
+        "model_api_cost_usd": 0.0,
+        "runtime": "offline deterministic baseline"
+      }
+    },
+    {
+      "case": "no_po",
+      "passed": true,
+      "expected_status": "needs_approval",
+      "actual_status": "needs_approval",
+      "tools_called": 2,
+      "tool_failures": 0,
+      "latency_ms": 0.069,
+      "model_tokens": 0,
+      "model_api_cost_usd": 0.0,
+      "result": {
+        "workflow": "invoice_reconciliation",
+        "status": "needs_approval",
+        "answer": "No matching purchase order. Route invoice to AP exception queue.",
+        "plan": [
+          "Extract invoice",
+          "Look up PO",
+          "Match goods receipt",
+          "Check tolerance",
+          "Document decision"
+        ],
+        "evidence": [
+          {
+            "invoice": {
+              "invoice_id": "INV4",
+              "po_id": "PO-X",
+              "supplier": "Unknown",
+              "unit_price": "99",
+              "qty": "1",
+              "amount": "99"
+            }
+          }
+        ],
+        "trace": [
+          {
+            "tool": "extract_invoice",
+            "ok": true,
+            "elapsed_ms": 0.027,
+            "output_preview": "[{'invoice_id': 'INV1', 'po_id': 'PO1', 'supplier': 'North Components', 'unit_price': '20', 'qty': '10', 'amount': '200'}, {'invoice_id': 'INV2', 'po_id': 'PO2', 'supplier': 'South"
+          },
+          {
+            "tool": "lookup_po",
+            "ok": true,
+            "elapsed_ms": 0.023,
+            "output_preview": "[{'po_id': 'PO1', 'supplier': 'North Components', 'unit_price': '20', 'ordered_qty': '10'}, {'po_id': 'PO2', 'supplier': 'South Services', 'unit_price': '35', 'ordered_qty': '6'}, "
+          }
+        ],
+        "latency_ms": 0.069,
+        "model_tokens": 0,
+        "model_api_cost_usd": 0.0,
+        "runtime": "offline deterministic baseline"
+      }
+    },
+    {
+      "case": "fault",
+      "passed": true,
+      "expected_status": "error",
+      "actual_status": "error",
+      "tools_called": 3,
+      "tool_failures": 1,
+      "latency_ms": 0.078,
+      "model_tokens": 0,
+      "model_api_cost_usd": 0.0,
+      "result": {
+        "workflow": "invoice_reconciliation",
+        "status": "error",
+        "answer": "RuntimeError: Injected tool fault: lookup_receipt",
+        "plan": [
+          "Extract invoice",
+          "Look up PO",
+          "Match goods receipt",
+          "Check tolerance",
+          "Document decision"
+        ],
+        "evidence": [],
+        "trace": [
+          {
+            "tool": "extract_invoice",
+            "ok": true,
+            "elapsed_ms": 0.03,
+            "output_preview": "[{'invoice_id': 'INV1', 'po_id': 'PO1', 'supplier': 'North Components', 'unit_price': '20', 'qty': '10', 'amount': '200'}, {'invoice_id': 'INV2', 'po_id': 'PO2', 'supplier': 'South"
+          },
+          {
+            "tool": "lookup_po",
+            "ok": true,
+            "elapsed_ms": 0.023,
+            "output_preview": "[{'po_id': 'PO1', 'supplier': 'North Components', 'unit_price': '20', 'ordered_qty': '10'}, {'po_id': 'PO2', 'supplier': 'South Services', 'unit_price': '35', 'ordered_qty': '6'}, "
+          },
+          {
+            "tool": "lookup_receipt",
+            "ok": false,
+            "elapsed_ms": 0.002,
+            "error": "RuntimeError: Injected tool fault: lookup_receipt"
+          }
+        ],
+        "latency_ms": 0.078,
+        "model_tokens": 0,
+        "model_api_cost_usd": 0.0,
+        "runtime": "offline deterministic baseline"
+      }
+    }
+  ]
+}

@@ -1,0 +1,20 @@
+[
+  {
+    "incident_id": "INC-1",
+    "pipeline_id": "warehouse_load",
+    "log": "Warehouse load failed: STORAGE_QUOTA exceeded 100GB limit",
+    "time": "2026-04-01T08:00:00Z"
+  },
+  {
+    "incident_id": "INC-2",
+    "pipeline_id": "daily_orders",
+    "log": "Task timed out: upstream ingest_orders failed with RATE_LIMIT_429",
+    "time": "2026-04-02T08:00:00Z"
+  },
+  {
+    "incident_id": "INC-3",
+    "pipeline_id": "ingest_orders",
+    "log": "Task succeeded without errors",
+    "time": "2026-04-02T09:00:00Z"
+  }
+]

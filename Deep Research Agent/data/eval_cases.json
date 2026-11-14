@@ -1,0 +1,46 @@
+[
+  {
+    "id": "emissions_conflict",
+    "request": {
+      "question": "What do sources say about port emissions and electric tugs?"
+    },
+    "expected_status": "success",
+    "expected_contains": [
+      "conflicting",
+      "S1",
+      "S2"
+    ]
+  },
+  {
+    "id": "delay_research",
+    "request": {
+      "question": "What causes supply chain delays?"
+    },
+    "expected_status": "success",
+    "expected_contains": [
+      "synthetic",
+      "S4"
+    ]
+  },
+  {
+    "id": "no_sources",
+    "request": {
+      "question": "quantum battery research"
+    },
+    "expected_status": "not_found",
+    "expected_contains": [
+      "no matching"
+    ]
+  },
+  {
+    "id": "search_tool_failure",
+    "request": {
+      "question": "port emissions"
+    },
+    "fault": "search",
+    "expected_status": "error",
+    "expected_contains": [
+      "Injected tool fault"
+    ]
+  }
+]

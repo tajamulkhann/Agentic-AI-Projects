@@ -1,0 +1,30 @@
+{
+  "workflow": "sql_analyst",
+  "status": "error",
+  "answer": "RuntimeError: Injected tool fault: execute_sql",
+  "plan": [
+    "Classify question",
+    "Inspect read-only schema",
+    "Select allowlisted query",
+    "Execute and explain"
+  ],
+  "evidence": [],
+  "trace": [
+    {
+      "tool": "schema",
+      "ok": true,
+      "elapsed_ms": 0.62,
+      "output_preview": "{'customers': ['id', 'name'], 'orders': ['id', 'customer_id', 'category', 'amount', 'ordered_at']}"
+    },
+    {
+      "tool": "execute_sql",
+      "ok": false,
+      "elapsed_ms": 0.003,
+      "error": "RuntimeError: Injected tool fault: execute_sql"
+    }
+  ],
+  "latency_ms": 0.648,
+  "model_tokens": 0,
+  "model_api_cost_usd": 0.0,
+  "runtime": "offline deterministic baseline"
+}

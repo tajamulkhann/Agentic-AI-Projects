@@ -1,0 +1,9 @@
+{
+  "allowed_tools": [
+    "issues",
+    "lookup_issue",
+    "propose_patch",
+    "run_tests"
+  ],
+  "source": "Tools observed in actual offline fixture runs. This is an advisory model allowlist, not a remote execution permission."
+}

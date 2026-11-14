@@ -1,0 +1,43 @@
+{
+  "workflow": "issue_to_pr",
+  "status": "error",
+  "answer": "RuntimeError: Injected tool fault: run_tests",
+  "plan": [
+    "Select local issue",
+    "Inspect allowlisted fixture source",
+    "Propose minimal patch",
+    "Run tests in a temporary copy",
+    "Draft PR, no push"
+  ],
+  "evidence": [],
+  "trace": [
+    {
+      "tool": "issues",
+      "ok": true,
+      "elapsed_ms": 0.028,
+      "output_preview": "[{'id': 101, 'title': 'Discount calculation incorrectly rounds before applying tax', 'file': 'billing.py', 'issue_type': 'calculation', 'expected': 'round on final line'}, {'id': 1"
+    },
+    {
+      "tool": "lookup_issue",
+      "ok": true,
+      "elapsed_ms": 0.002,
+      "output_preview": "{'id': 101, 'title': 'Discount calculation incorrectly rounds before applying tax', 'file': 'billing.py', 'issue_type': 'calculation', 'expected': 'round on final line'}"
+    },
+    {
+      "tool": "propose_patch",
+      "ok": true,
+      "elapsed_ms": 0.004,
+      "output_preview": "\"\"\"Buggy demo implementation, never a live checkout system.\"\"\"\ndef total_with_tax(price,discount_rate,tax_rate):\n    discounted=price*(1-discount_rate)\n    return round(discounted*"
+    },
+    {
+      "tool": "run_tests",
+      "ok": false,
+      "elapsed_ms": 0.003,
+      "error": "RuntimeError: Injected tool fault: run_tests"
+    }
+  ],
+  "latency_ms": 0.085,
+  "model_tokens": 0,
+  "model_api_cost_usd": 0.0,
+  "runtime": "offline deterministic baseline"
+}

@@ -1,0 +1,37 @@
+{
+  "workflow": "invoice_reconciliation",
+  "status": "error",
+  "answer": "RuntimeError: Injected tool fault: lookup_receipt",
+  "plan": [
+    "Extract invoice",
+    "Look up PO",
+    "Match goods receipt",
+    "Check tolerance",
+    "Document decision"
+  ],
+  "evidence": [],
+  "trace": [
+    {
+      "tool": "extract_invoice",
+      "ok": true,
+      "elapsed_ms": 0.107,
+      "output_preview": "[{'invoice_id': 'INV1', 'po_id': 'PO1', 'supplier': 'North Components', 'unit_price': '20', 'qty': '10', 'amount': '200'}, {'invoice_id': 'INV2', 'po_id': 'PO2', 'supplier': 'South"
+    },
+    {
+      "tool": "lookup_po",
+      "ok": true,
+      "elapsed_ms": 0.027,
+      "output_preview": "[{'po_id': 'PO1', 'supplier': 'North Components', 'unit_price': '20', 'ordered_qty': '10'}, {'po_id': 'PO2', 'supplier': 'South Services', 'unit_price': '35', 'ordered_qty': '6'}, "
+    },
+    {
+      "tool": "lookup_receipt",
+      "ok": false,
+      "elapsed_ms": 0.002,
+      "error": "RuntimeError: Injected tool fault: lookup_receipt"
+    }
+  ],
+  "latency_ms": 0.161,
+  "model_tokens": 0,
+  "model_api_cost_usd": 0.0,
+  "runtime": "offline deterministic baseline"
+}

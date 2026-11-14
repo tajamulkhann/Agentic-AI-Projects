@@ -1,0 +1,30 @@
+{
+  "workflow": "pipeline_triage",
+  "status": "error",
+  "answer": "RuntimeError: Injected tool fault: lineage",
+  "plan": [
+    "Load incident log",
+    "Inspect pipeline lineage",
+    "Diagnose likely cause",
+    "Recommend approved response"
+  ],
+  "evidence": [],
+  "trace": [
+    {
+      "tool": "incidents",
+      "ok": true,
+      "elapsed_ms": 0.022,
+      "output_preview": "[{'incident_id': 'INC-1', 'pipeline_id': 'warehouse_load', 'log': 'Warehouse load failed: STORAGE_QUOTA exceeded 100GB limit', 'time': '2026-04-01T08:00:00Z'}, {'incident_id': 'INC"
+    },
+    {
+      "tool": "lineage",
+      "ok": false,
+      "elapsed_ms": 0.002,
+      "error": "RuntimeError: Injected tool fault: lineage"
+    }
+  ],
+  "latency_ms": 0.039,
+  "model_tokens": 0,
+  "model_api_cost_usd": 0.0,
+  "runtime": "offline deterministic baseline"
+}

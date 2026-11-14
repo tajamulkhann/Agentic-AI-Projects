@@ -1,0 +1,55 @@
+{
+  "workflow": "browser_workflow",
+  "status": "needs_approval",
+  "answer": "Form fill plan prepared; awaiting explicit submit approval. No submission performed.",
+  "plan": [
+    "Inspect local form fields",
+    "Load supplier record",
+    "Validate each required field",
+    "Prepare fill plan",
+    "Pause before submission"
+  ],
+  "evidence": [
+    {
+      "selector": "[name='supplier_name']",
+      "value": "Acme Parts"
+    },
+    {
+      "selector": "[name='email']",
+      "value": "sales@acme.example"
+    },
+    {
+      "selector": "[name='country']",
+      "value": "India"
+    },
+    {
+      "selector": "[name='tax_id']",
+      "value": "GST-DEMO-001"
+    }
+  ],
+  "trace": [
+    {
+      "tool": "inspect_form",
+      "ok": true,
+      "elapsed_ms": 0.209,
+      "output_preview": "['supplier_name', 'email', 'country', 'tax_id']"
+    },
+    {
+      "tool": "suppliers",
+      "ok": true,
+      "elapsed_ms": 0.042,
+      "output_preview": "[{'supplier_id': 'SUP-1', 'supplier_name': 'Acme Parts', 'email': 'sales@acme.example', 'country': 'India', 'tax_id': 'GST-DEMO-001'}, {'supplier_id': 'SUP-2', 'supplier_name': 'Ba"
+    },
+    {
+      "tool": "validate",
+      "ok": true,
+      "elapsed_ms": 0.004,
+      "output_preview": "[]"
+    }
+  ],
+  "latency_ms": 0.31,
+  "model_tokens": 0,
+  "model_api_cost_usd": 0.0,
+  "runtime": "offline deterministic baseline",
+  "submitted": false
+}

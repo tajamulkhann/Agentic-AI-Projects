@@ -1,0 +1,463 @@
+{
+  "evaluation_type": "actual local executions with synthetic fixtures",
+  "cases": 5,
+  "passed": 5,
+  "task_success_rate": 1.0,
+  "tool_calls": 13,
+  "tool_failures": 1,
+  "tool_failure_rate": 0.0769,
+  "mean_latency_ms": 0.151,
+  "total_model_api_cost_usd": 0.0,
+  "model_tokens": 0,
+  "cost_note": "Offline baseline only, excludes machine/hosting cost and does not benchmark a hosted LLM.",
+  "details": [
+    {
+      "case": "baseline",
+      "passed": true,
+      "expected_status": "success",
+      "actual_status": "success",
+      "tools_called": 3,
+      "tool_failures": 0,
+      "latency_ms": 0.379,
+      "model_tokens": 0,
+      "model_api_cost_usd": 0.0,
+      "result": {
+        "workflow": "evaluation_platform",
+        "status": "success",
+        "answer": "Baseline success 75%; candidate success 75%. Archived synthetic traces; this run replays scoring, not external agents.",
+        "plan": [
+          "Load archived traces",
+          "Validate required tools",
+          "Replay candidate with injected failure",
+          "Compare success and spend"
+        ],
+        "evidence": [
+          {
+            "baseline": {
+              "evaluated": 4,
+              "task_success_rate": 0.75,
+              "tool_failure_rate": 0.0833,
+              "mean_latency_ms": 15.925,
+              "model_api_cost_usd": 0,
+              "details": [
+                {
+                  "trace_id": "research-reliable",
+                  "success": true,
+                  "tool_failures": 0,
+                  "tool_calls": 3,
+                  "latency_ms": 22.4,
+                  "model_api_cost_usd": 0,
+                  "expected_status": "success"
+                },
+                {
+                  "trace_id": "sql-reliable",
+                  "success": true,
+                  "tool_failures": 0,
+                  "tool_calls": 2,
+                  "latency_ms": 11.8,
+                  "model_api_cost_usd": 0,
+                  "expected_status": "success"
+                },
+                {
+                  "trace_id": "billing-failed",
+                  "success": false,
+                  "tool_failures": 1,
+                  "tool_calls": 3,
+                  "latency_ms": 13.5,
+                  "model_api_cost_usd": 0,
+                  "expected_status": "error"
+                },
+                {
+                  "trace_id": "support-approval",
+                  "success": true,
+                  "tool_failures": 0,
+                  "tool_calls": 4,
+                  "latency_ms": 16.0,
+                  "model_api_cost_usd": 0,
+                  "expected_status": "needs_approval"
+                }
+              ]
+            },
+            "candidate": {
+              "evaluated": 4,
+              "task_success_rate": 0.75,
+              "tool_failure_rate": 0.0833,
+              "mean_latency_ms": 15.925,
+              "model_api_cost_usd": 0,
+              "details": [
+                {
+                  "trace_id": "research-reliable",
+                  "success": true,
+                  "tool_failures": 0,
+                  "tool_calls": 3,
+                  "latency_ms": 22.4,
+                  "model_api_cost_usd": 0,
+                  "expected_status": "success"
+                },
+                {
+                  "trace_id": "sql-reliable",
+                  "success": true,
+                  "tool_failures": 0,
+                  "tool_calls": 2,
+                  "latency_ms": 11.8,
+                  "model_api_cost_usd": 0,
+                  "expected_status": "success"
+                },
+                {
+                  "trace_id": "billing-failed",
+                  "success": false,
+                  "tool_failures": 1,
+                  "tool_calls": 3,
+                  "latency_ms": 13.5,
+                  "model_api_cost_usd": 0,
+                  "expected_status": "error"
+                },
+                {
+                  "trace_id": "support-approval",
+                  "success": true,
+                  "tool_failures": 0,
+                  "tool_calls": 4,
+                  "latency_ms": 16.0,
+                  "model_api_cost_usd": 0,
+                  "expected_status": "needs_approval"
+                }
+              ]
+            }
+          }
+        ],
+        "trace": [
+          {
+            "tool": "load_benchmark",
+            "ok": true,
+            "elapsed_ms": 0.233,
+            "output_preview": "[{'id': 'research-reliable', 'task': 'research', 'expected_tools': ['load_corpus', 'search', 'compare'], 'events': [{'tool': 'load_corpus', 'ok': True}, {'tool': 'search', 'ok': Tr"
+          },
+          {
+            "tool": "baseline",
+            "ok": true,
+            "elapsed_ms": 0.041,
+            "output_preview": "{'evaluated': 4, 'task_success_rate': 0.75, 'tool_failure_rate': 0.0833, 'mean_latency_ms': 15.925, 'model_api_cost_usd': 0, 'details': [{'trace_id': 'research-reliable', 'success'"
+          },
+          {
+            "tool": "replay",
+            "ok": true,
+            "elapsed_ms": 0.018,
+            "output_preview": "{'evaluated': 4, 'task_success_rate': 0.75, 'tool_failure_rate': 0.0833, 'mean_latency_ms': 15.925, 'model_api_cost_usd': 0, 'details': [{'trace_id': 'research-reliable', 'success'"
+          }
+        ],
+        "latency_ms": 0.379,
+        "model_tokens": 0,
+        "model_api_cost_usd": 0.0,
+        "runtime": "offline deterministic baseline"
+      }
+    },
+    {
+      "case": "fault_injection",
+      "passed": true,
+      "expected_status": "success",
+      "actual_status": "success",
+      "tools_called": 3,
+      "tool_failures": 0,
+      "latency_ms": 0.145,
+      "model_tokens": 0,
+      "model_api_cost_usd": 0.0,
+      "result": {
+        "workflow": "evaluation_platform",
+        "status": "success",
+        "answer": "Baseline success 75%; candidate success 50%. Archived synthetic traces; this run replays scoring, not external agents.",
+        "plan": [
+          "Load archived traces",
+          "Validate required tools",
+          "Replay candidate with injected failure",
+          "Compare success and spend"
+        ],
+        "evidence": [
+          {
+            "baseline": {
+              "evaluated": 4,
+              "task_success_rate": 0.75,
+              "tool_failure_rate": 0.0833,
+              "mean_latency_ms": 15.925,
+              "model_api_cost_usd": 0,
+              "details": [
+                {
+                  "trace_id": "research-reliable",
+                  "success": true,
+                  "tool_failures": 0,
+                  "tool_calls": 3,
+                  "latency_ms": 22.4,
+                  "model_api_cost_usd": 0,
+                  "expected_status": "success"
+                },
+                {
+                  "trace_id": "sql-reliable",
+                  "success": true,
+                  "tool_failures": 0,
+                  "tool_calls": 2,
+                  "latency_ms": 11.8,
+                  "model_api_cost_usd": 0,
+                  "expected_status": "success"
+                },
+                {
+                  "trace_id": "billing-failed",
+                  "success": false,
+                  "tool_failures": 1,
+                  "tool_calls": 3,
+                  "latency_ms": 13.5,
+                  "model_api_cost_usd": 0,
+                  "expected_status": "error"
+                },
+                {
+                  "trace_id": "support-approval",
+                  "success": true,
+                  "tool_failures": 0,
+                  "tool_calls": 4,
+                  "latency_ms": 16.0,
+                  "model_api_cost_usd": 0,
+                  "expected_status": "needs_approval"
+                }
+              ]
+            },
+            "candidate": {
+              "evaluated": 4,
+              "task_success_rate": 0.5,
+              "tool_failure_rate": 0.1667,
+              "mean_latency_ms": 15.925,
+              "model_api_cost_usd": 0,
+              "details": [
+                {
+                  "trace_id": "research-reliable",
+                  "success": false,
+                  "tool_failures": 1,
+                  "tool_calls": 3,
+                  "latency_ms": 22.4,
+                  "model_api_cost_usd": 0,
+                  "expected_status": "success"
+                },
+                {
+                  "trace_id": "sql-reliable",
+                  "success": true,
+                  "tool_failures": 0,
+                  "tool_calls": 2,
+                  "latency_ms": 11.8,
+                  "model_api_cost_usd": 0,
+                  "expected_status": "success"
+                },
+                {
+                  "trace_id": "billing-failed",
+                  "success": false,
+                  "tool_failures": 1,
+                  "tool_calls": 3,
+                  "latency_ms": 13.5,
+                  "model_api_cost_usd": 0,
+                  "expected_status": "error"
+                },
+                {
+                  "trace_id": "support-approval",
+                  "success": true,
+                  "tool_failures": 0,
+                  "tool_calls": 4,
+                  "latency_ms": 16.0,
+                  "model_api_cost_usd": 0,
+                  "expected_status": "needs_approval"
+                }
+              ]
+            }
+          }
+        ],
+        "trace": [
+          {
+            "tool": "load_benchmark",
+            "ok": true,
+            "elapsed_ms": 0.059,
+            "output_preview": "[{'id': 'research-reliable', 'task': 'research', 'expected_tools': ['load_corpus', 'search', 'compare'], 'events': [{'tool': 'load_corpus', 'ok': True}, {'tool': 'search', 'ok': Tr"
+          },
+          {
+            "tool": "baseline",
+            "ok": true,
+            "elapsed_ms": 0.018,
+            "output_preview": "{'evaluated': 4, 'task_success_rate': 0.75, 'tool_failure_rate': 0.0833, 'mean_latency_ms': 15.925, 'model_api_cost_usd': 0, 'details': [{'trace_id': 'research-reliable', 'success'"
+          },
+          {
+            "tool": "replay",
+            "ok": true,
+            "elapsed_ms": 0.018,
+            "output_preview": "{'evaluated': 4, 'task_success_rate': 0.5, 'tool_failure_rate': 0.1667, 'mean_latency_ms': 15.925, 'model_api_cost_usd': 0, 'details': [{'trace_id': 'research-reliable', 'success':"
+          }
+        ],
+        "latency_ms": 0.145,
+        "model_tokens": 0,
+        "model_api_cost_usd": 0.0,
+        "runtime": "offline deterministic baseline"
+      }
+    },
+    {
+      "case": "one_trace",
+      "passed": true,
+      "expected_status": "success",
+      "actual_status": "success",
+      "tools_called": 3,
+      "tool_failures": 0,
+      "latency_ms": 0.09,
+      "model_tokens": 0,
+      "model_api_cost_usd": 0.0,
+      "result": {
+        "workflow": "evaluation_platform",
+        "status": "success",
+        "answer": "Baseline success 100%; candidate success 100%. Archived synthetic traces; this run replays scoring, not external agents.",
+        "plan": [
+          "Load archived traces",
+          "Validate required tools",
+          "Replay candidate with injected failure",
+          "Compare success and spend"
+        ],
+        "evidence": [
+          {
+            "baseline": {
+              "evaluated": 1,
+              "task_success_rate": 1.0,
+              "tool_failure_rate": 0.0,
+              "mean_latency_ms": 22.4,
+              "model_api_cost_usd": 0,
+              "details": [
+                {
+                  "trace_id": "research-reliable",
+                  "success": true,
+                  "tool_failures": 0,
+                  "tool_calls": 3,
+                  "latency_ms": 22.4,
+                  "model_api_cost_usd": 0,
+                  "expected_status": "success"
+                }
+              ]
+            },
+            "candidate": {
+              "evaluated": 1,
+              "task_success_rate": 1.0,
+              "tool_failure_rate": 0.0,
+              "mean_latency_ms": 22.4,
+              "model_api_cost_usd": 0,
+              "details": [
+                {
+                  "trace_id": "research-reliable",
+                  "success": true,
+                  "tool_failures": 0,
+                  "tool_calls": 3,
+                  "latency_ms": 22.4,
+                  "model_api_cost_usd": 0,
+                  "expected_status": "success"
+                }
+              ]
+            }
+          }
+        ],
+        "trace": [
+          {
+            "tool": "load_benchmark",
+            "ok": true,
+            "elapsed_ms": 0.042,
+            "output_preview": "[{'id': 'research-reliable', 'task': 'research', 'expected_tools': ['load_corpus', 'search', 'compare'], 'events': [{'tool': 'load_corpus', 'ok': True}, {'tool': 'search', 'ok': Tr"
+          },
+          {
+            "tool": "baseline",
+            "ok": true,
+            "elapsed_ms": 0.009,
+            "output_preview": "{'evaluated': 1, 'task_success_rate': 1.0, 'tool_failure_rate': 0.0, 'mean_latency_ms': 22.4, 'model_api_cost_usd': 0, 'details': [{'trace_id': 'research-reliable', 'success': True"
+          },
+          {
+            "tool": "replay",
+            "ok": true,
+            "elapsed_ms": 0.006,
+            "output_preview": "{'evaluated': 1, 'task_success_rate': 1.0, 'tool_failure_rate': 0.0, 'mean_latency_ms': 22.4, 'model_api_cost_usd': 0, 'details': [{'trace_id': 'research-reliable', 'success': True"
+          }
+        ],
+        "latency_ms": 0.09,
+        "model_tokens": 0,
+        "model_api_cost_usd": 0.0,
+        "runtime": "offline deterministic baseline"
+      }
+    },
+    {
+      "case": "missing_trace",
+      "passed": true,
+      "expected_status": "not_found",
+      "actual_status": "not_found",
+      "tools_called": 1,
+      "tool_failures": 0,
+      "latency_ms": 0.057,
+      "model_tokens": 0,
+      "model_api_cost_usd": 0.0,
+      "result": {
+        "workflow": "evaluation_platform",
+        "status": "not_found",
+        "answer": "Trace not found",
+        "plan": [
+          "Load archived traces",
+          "Validate required tools",
+          "Replay candidate with injected failure",
+          "Compare success and spend"
+        ],
+        "evidence": [],
+        "trace": [
+          {
+            "tool": "load_benchmark",
+            "ok": true,
+            "elapsed_ms": 0.037,
+            "output_preview": "[{'id': 'research-reliable', 'task': 'research', 'expected_tools': ['load_corpus', 'search', 'compare'], 'events': [{'tool': 'load_corpus', 'ok': True}, {'tool': 'search', 'ok': Tr"
+          }
+        ],
+        "latency_ms": 0.057,
+        "model_tokens": 0,
+        "model_api_cost_usd": 0.0,
+        "runtime": "offline deterministic baseline"
+      }
+    },
+    {
+      "case": "fault",
+      "passed": true,
+      "expected_status": "error",
+      "actual_status": "error",
+      "tools_called": 3,
+      "tool_failures": 1,
+      "latency_ms": 0.086,
+      "model_tokens": 0,
+      "model_api_cost_usd": 0.0,
+      "result": {
+        "workflow": "evaluation_platform",
+        "status": "error",
+        "answer": "RuntimeError: Injected tool fault: replay",
+        "plan": [
+          "Load archived traces",
+          "Validate required tools",
+          "Replay candidate with injected failure",
+          "Compare success and spend"
+        ],
+        "evidence": [],
+        "trace": [
+          {
+            "tool": "load_benchmark",
+            "ok": true,
+            "elapsed_ms": 0.034,
+            "output_preview": "[{'id': 'research-reliable', 'task': 'research', 'expected_tools': ['load_corpus', 'search', 'compare'], 'events': [{'tool': 'load_corpus', 'ok': True}, {'tool': 'search', 'ok': Tr"
+          },
+          {
+            "tool": "baseline",
+            "ok": true,
+            "elapsed_ms": 0.017,
+            "output_preview": "{'evaluated': 4, 'task_success_rate': 0.75, 'tool_failure_rate': 0.0833, 'mean_latency_ms': 15.925, 'model_api_cost_usd': 0, 'details': [{'trace_id': 'research-reliable', 'success'"
+          },
+          {
+            "tool": "replay",
+            "ok": false,
+            "elapsed_ms": 0.002,
+            "error": "RuntimeError: Injected tool fault: replay"
+          }
+        ],
+        "latency_ms": 0.086,
+        "model_tokens": 0,
+        "model_api_cost_usd": 0.0,
+        "runtime": "offline deterministic baseline"
+      }
+    }
+  ]
+}

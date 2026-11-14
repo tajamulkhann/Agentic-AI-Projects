@@ -1,0 +1,32 @@
+[
+  {
+    "task_id": "TASK-1",
+    "feature": "discount",
+    "percent": 10,
+    "requirement": "Calculate percentage discount with 2-decimal result",
+    "acceptance": {
+      "price": 80,
+      "expected": 72
+    }
+  },
+  {
+    "task_id": "TASK-2",
+    "feature": "tax",
+    "percent": 8,
+    "requirement": "Calculate included tax",
+    "acceptance": {
+      "price": 100,
+      "expected": 108
+    }
+  },
+  {
+    "task_id": "TASK-3",
+    "feature": "unknown",
+    "percent": 0,
+    "requirement": "Implement unsafe dynamic plugin",
+    "acceptance": {
+      "price": 5,
+      "expected": 5
+    }
+  }
+]

@@ -1,0 +1,63 @@
+[
+  {
+    "id": "refund_approval",
+    "request": {
+      "order_id": "ORD-100",
+      "customer_id": "C1",
+      "issue": "refund"
+    },
+    "expected_status": "needs_approval",
+    "expected_contains": [
+      "65.00",
+      "No refund executed"
+    ]
+  },
+  {
+    "id": "refund_expired",
+    "request": {
+      "order_id": "ORD-101",
+      "customer_id": "C2",
+      "issue": "refund"
+    },
+    "expected_status": "deny",
+    "expected_contains": [
+      "30-day"
+    ]
+  },
+  {
+    "id": "delivery",
+    "request": {
+      "order_id": "ORD-102",
+      "customer_id": "C3",
+      "issue": "delivery"
+    },
+    "expected_status": "success",
+    "expected_contains": [
+      "in_transit"
+    ]
+  },
+  {
+    "id": "mismatch",
+    "request": {
+      "order_id": "ORD-100",
+      "customer_id": "C2",
+      "issue": "refund"
+    },
+    "expected_status": "rejected",
+    "expected_contains": [
+      "authorization"
+    ]
+  },
+  {
+    "id": "fault",
+    "request": {
+      "order_id": "ORD-100",
+      "customer_id": "C1"
+    },
+    "fault": "retrieve_policy",
+    "expected_status": "error",
+    "expected_contains": [
+      "Injected tool fault"
+    ]
+  }
+]

@@ -1,0 +1,6 @@
+case,passed,expected_status,actual_status,tools_called,tool_failures,latency_ms,model_tokens,model_api_cost_usd
+quota,True,needs_approval,needs_approval,3,0,0.482,0,0.0
+rate,True,needs_approval,needs_approval,3,0,0.091,0,0.0
+healthy,True,success,success,3,0,0.065,0,0.0
+missing,True,not_found,not_found,1,0,0.03,0,0.0
+fault,True,error,error,2,1,0.041,0,0.0

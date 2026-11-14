@@ -1,0 +1,9 @@
+{
+  "allowed_tools": [
+    "extract_invoice",
+    "lookup_po",
+    "lookup_receipt",
+    "three_way_match"
+  ],
+  "source": "Tools observed in actual offline fixture runs. This is an advisory model allowlist, not a remote execution permission."
+}

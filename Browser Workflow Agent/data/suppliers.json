@@ -1,0 +1,16 @@
+[
+  {
+    "supplier_id": "SUP-1",
+    "supplier_name": "Acme Parts",
+    "email": "sales@acme.example",
+    "country": "India",
+    "tax_id": "GST-DEMO-001"
+  },
+  {
+    "supplier_id": "SUP-2",
+    "supplier_name": "Bad Vendor",
+    "email": "not-an-email",
+    "country": "India",
+    "tax_id": ""
+  }
+]

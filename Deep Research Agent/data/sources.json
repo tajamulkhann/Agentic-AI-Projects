@@ -1,0 +1,62 @@
+[
+  {
+    "id": "S1",
+    "publisher": "Harbor Lab",
+    "date": "2026-02-10",
+    "url": "synthetic://harbor-lab/report-2026",
+    "topic": "port emissions",
+    "claim": "Electric tug pilot reduced port emissions by 18 percent in the synthetic test",
+    "metric": "emissions_reduction",
+    "value": 18,
+    "quality": "methodology described",
+    "excerpt": "Metered test measured 18 percent lower emissions than baseline."
+  },
+  {
+    "id": "S2",
+    "publisher": "Maritime Forum",
+    "date": "2026-02-12",
+    "url": "synthetic://forum/emissions",
+    "topic": "port emissions",
+    "claim": "Electric tug pilot reduced port emissions by 7 percent in the synthetic test",
+    "metric": "emissions_reduction",
+    "value": 7,
+    "quality": "survey estimate",
+    "excerpt": "Survey-based estimate is 7 percent; fleet size was smaller."
+  },
+  {
+    "id": "S3",
+    "publisher": "Port Authority Demo",
+    "date": "2026-02-15",
+    "url": "synthetic://port/emissions",
+    "topic": "port emissions",
+    "claim": "Charging availability affected electric tug utilization",
+    "metric": "charging_constraint",
+    "value": 1,
+    "quality": "operational log",
+    "excerpt": "Charging infrastructure caused missed utilization windows."
+  },
+  {
+    "id": "S4",
+    "publisher": "Freight Research",
+    "date": "2026-03-01",
+    "url": "synthetic://freight/delay",
+    "topic": "supply chain delays",
+    "claim": "Weather was the primary cause of delays in synthetic shipments",
+    "metric": "weather_delay_share",
+    "value": 42,
+    "quality": "sample analysis",
+    "excerpt": "42 percent of synthetic late shipments flagged weather as primary reason."
+  },
+  {
+    "id": "S5",
+    "publisher": "Operations Lab",
+    "date": "2026-03-05",
+    "url": "synthetic://ops/delay",
+    "topic": "supply chain delays",
+    "claim": "Port congestion contributed to delays",
+    "metric": "congestion_share",
+    "value": 33,
+    "quality": "model estimate",
+    "excerpt": "33 percent of synthetic late arrivals had congestion flags."
+  }
+]

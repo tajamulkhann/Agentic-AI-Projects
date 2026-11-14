@@ -1,0 +1,44 @@
+{
+  "workflow": "pipeline_triage",
+  "status": "needs_approval",
+  "answer": "Likely cause: Storage quota exhausted. Recommendation: Escalate capacity investigation; do not purge data automatically. Remediation not executed.",
+  "plan": [
+    "Load incident log",
+    "Inspect pipeline lineage",
+    "Diagnose likely cause",
+    "Recommend approved response"
+  ],
+  "evidence": [
+    {
+      "incident": "INC-1",
+      "log": "Warehouse load failed: STORAGE_QUOTA exceeded 100GB limit",
+      "upstream": [
+        "daily_orders"
+      ]
+    }
+  ],
+  "trace": [
+    {
+      "tool": "incidents",
+      "ok": true,
+      "elapsed_ms": 0.039,
+      "output_preview": "[{'incident_id': 'INC-1', 'pipeline_id': 'warehouse_load', 'log': 'Warehouse load failed: STORAGE_QUOTA exceeded 100GB limit', 'time': '2026-04-01T08:00:00Z'}, {'incident_id': 'INC"
+    },
+    {
+      "tool": "lineage",
+      "ok": true,
+      "elapsed_ms": 0.029,
+      "output_preview": "[{'pipeline_id': 'daily_orders', 'depends_on': ['ingest_orders'], 'runbook': 'Check upstream ingestion, retry only after approval'}, {'pipeline_id': 'warehouse_load', 'depends_on':"
+    },
+    {
+      "tool": "diagnose",
+      "ok": true,
+      "elapsed_ms": 0.001,
+      "output_preview": "('Storage quota exhausted', 'Escalate capacity investigation; do not purge data automatically.')"
+    }
+  ],
+  "latency_ms": 0.111,
+  "model_tokens": 0,
+  "model_api_cost_usd": 0.0,
+  "runtime": "offline deterministic baseline"
+}

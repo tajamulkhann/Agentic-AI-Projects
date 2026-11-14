@@ -1,0 +1,6 @@
+case,passed,expected_status,actual_status,tools_called,tool_failures,latency_ms,model_tokens,model_api_cost_usd
+refund_approval,True,needs_approval,needs_approval,4,0,0.622,0,0.0
+refund_expired,True,deny,deny,4,0,0.096,0,0.0
+delivery,True,success,success,4,0,0.069,0,0.0
+mismatch,True,rejected,rejected,2,0,0.05,0,0.0
+fault,True,error,error,3,1,0.079,0,0.0

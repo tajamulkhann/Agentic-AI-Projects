@@ -1,0 +1,49 @@
+[
+  {
+    "id": "baseline",
+    "request": {},
+    "expected_status": "success",
+    "expected_contains": [
+      "75%"
+    ]
+  },
+  {
+    "id": "fault_injection",
+    "request": {
+      "inject_tool": "search"
+    },
+    "expected_status": "success",
+    "expected_contains": [
+      "50%"
+    ]
+  },
+  {
+    "id": "one_trace",
+    "request": {
+      "trace_id": "research-reliable"
+    },
+    "expected_status": "success",
+    "expected_contains": [
+      "100%"
+    ]
+  },
+  {
+    "id": "missing_trace",
+    "request": {
+      "trace_id": "does-not-exist"
+    },
+    "expected_status": "not_found",
+    "expected_contains": [
+      "Trace not found"
+    ]
+  },
+  {
+    "id": "fault",
+    "request": {},
+    "fault": "replay",
+    "expected_status": "error",
+    "expected_contains": [
+      "Injected tool fault"
+    ]
+  }
+]

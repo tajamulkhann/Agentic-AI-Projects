@@ -1,0 +1,36 @@
+{
+  "workflow": "support_resolution",
+  "status": "error",
+  "answer": "RuntimeError: Injected tool fault: retrieve_policy",
+  "plan": [
+    "Authenticate order-to-customer link",
+    "Retrieve support policy",
+    "Investigate order",
+    "Draft resolution without execution"
+  ],
+  "evidence": [],
+  "trace": [
+    {
+      "tool": "orders",
+      "ok": true,
+      "elapsed_ms": 0.021,
+      "output_preview": "[{'order_id': 'ORD-100', 'customer_id': 'C1', 'status': 'delivered', 'total': 65, 'days_since_delivery': 5, 'item': 'headphones'}, {'order_id': 'ORD-101', 'customer_id': 'C2', 'sta"
+    },
+    {
+      "tool": "lookup_order",
+      "ok": true,
+      "elapsed_ms": 0.001,
+      "output_preview": "{'order_id': 'ORD-100', 'customer_id': 'C1', 'status': 'delivered', 'total': 65, 'days_since_delivery': 5, 'item': 'headphones'}"
+    },
+    {
+      "tool": "retrieve_policy",
+      "ok": false,
+      "elapsed_ms": 0.002,
+      "error": "RuntimeError: Injected tool fault: retrieve_policy"
+    }
+  ],
+  "latency_ms": 0.04,
+  "model_tokens": 0,
+  "model_api_cost_usd": 0.0,
+  "runtime": "offline deterministic baseline"
+}

@@ -1,0 +1,9 @@
+{
+  "allowed_tools": [
+    "orders",
+    "lookup_order",
+    "retrieve_policy",
+    "resolve"
+  ],
+  "source": "Tools observed in actual offline fixture runs. This is an advisory model allowlist, not a remote execution permission."
+}

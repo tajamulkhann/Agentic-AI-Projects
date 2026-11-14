@@ -1,0 +1,20 @@
+{
+  "liability": {
+    "risk_phrases": [
+      "unlimited"
+    ],
+    "preferred": "Liability cap at annual contract value"
+  },
+  "termination": {
+    "risk_phrases": [
+      "30 days"
+    ],
+    "preferred": "At least 60 days notice"
+  },
+  "privacy": {
+    "risk_phrases": [
+      "without advance notice"
+    ],
+    "preferred": "Prior written approval for transfers"
+  }
+}

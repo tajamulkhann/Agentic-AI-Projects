@@ -1,0 +1,44 @@
+[
+  {
+    "id": "prepared",
+    "request": {
+      "supplier_id": "SUP-1"
+    },
+    "expected_status": "needs_approval",
+    "expected_contains": [
+      "awaiting",
+      "sales@acme.example"
+    ]
+  },
+  {
+    "id": "invalid",
+    "request": {
+      "supplier_id": "SUP-2"
+    },
+    "expected_status": "rejected",
+    "expected_contains": [
+      "Missing"
+    ]
+  },
+  {
+    "id": "unknown",
+    "request": {
+      "supplier_id": "SUP-9"
+    },
+    "expected_status": "not_found",
+    "expected_contains": [
+      "not found"
+    ]
+  },
+  {
+    "id": "fault",
+    "request": {
+      "supplier_id": "SUP-1"
+    },
+    "fault": "inspect_form",
+    "expected_status": "error",
+    "expected_contains": [
+      "Injected tool fault"
+    ]
+  }
+]

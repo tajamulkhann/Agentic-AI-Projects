@@ -1,0 +1,4 @@
+po_id,supplier,unit_price,ordered_qty
+PO1,North Components,20,10
+PO2,South Services,35,6
+PO3,East Parts,10,3

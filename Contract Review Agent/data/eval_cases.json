@@ -1,0 +1,44 @@
+[
+  {
+    "id": "risky",
+    "request": {
+      "contract_id": "C-001"
+    },
+    "expected_status": "needs_approval",
+    "expected_contains": [
+      "3 playbook",
+      "C-001:L1"
+    ]
+  },
+  {
+    "id": "compliant",
+    "request": {
+      "contract_id": "C-002"
+    },
+    "expected_status": "success",
+    "expected_contains": [
+      "No flagged"
+    ]
+  },
+  {
+    "id": "unknown",
+    "request": {
+      "contract_id": "C-009"
+    },
+    "expected_status": "not_found",
+    "expected_contains": [
+      "unavailable"
+    ]
+  },
+  {
+    "id": "fault",
+    "request": {
+      "contract_id": "C-001"
+    },
+    "fault": "review",
+    "expected_status": "error",
+    "expected_contains": [
+      "Injected tool fault"
+    ]
+  }
+]

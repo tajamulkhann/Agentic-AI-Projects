@@ -1,0 +1,218 @@
+{
+  "evaluation_type": "actual local executions with synthetic fixtures",
+  "cases": 4,
+  "passed": 4,
+  "task_success_rate": 1.0,
+  "tool_calls": 12,
+  "tool_failures": 1,
+  "tool_failure_rate": 0.0833,
+  "mean_latency_ms": 475.721,
+  "total_model_api_cost_usd": 0.0,
+  "model_tokens": 0,
+  "cost_note": "Offline baseline only, excludes machine/hosting cost and does not benchmark a hosted LLM.",
+  "details": [
+    {
+      "case": "fix",
+      "passed": true,
+      "expected_status": "success",
+      "actual_status": "success",
+      "tools_called": 4,
+      "tool_failures": 0,
+      "latency_ms": 1902.626,
+      "model_tokens": 0,
+      "model_api_cost_usd": 0.0,
+      "result": {
+        "workflow": "issue_to_pr",
+        "status": "success",
+        "answer": "Patch ready for review for issue #101; tests passed. No remote PR created.",
+        "plan": [
+          "Select local issue",
+          "Inspect allowlisted fixture source",
+          "Propose minimal patch",
+          "Run tests in a temporary copy",
+          "Draft PR, no push"
+        ],
+        "evidence": [
+          {
+            "patch": "--- a/billing.py\n+++ b/billing.py\n@@ -1,4 +1,4 @@\n \"\"\"Buggy demo implementation, never a live checkout system.\"\"\"\n def total_with_tax(price,discount_rate,tax_rate):\n-    discounted=round(price*(1-discount_rate),2)\n+    discounted=price*(1-discount_rate)\n     return round(discounted*(1+tax_rate),2)\n",
+            "test_output": {
+              "passed": true,
+              "returncode": 0,
+              "stdout": "..                                                                       [100%]\n2 passed in 0.03s\n",
+              "stderr": ""
+            }
+          }
+        ],
+        "trace": [
+          {
+            "tool": "issues",
+            "ok": true,
+            "elapsed_ms": 0.253,
+            "output_preview": "[{'id': 101, 'title': 'Discount calculation incorrectly rounds before applying tax', 'file': 'billing.py', 'issue_type': 'calculation', 'expected': 'round on final line'}, {'id': 1"
+          },
+          {
+            "tool": "lookup_issue",
+            "ok": true,
+            "elapsed_ms": 0.005,
+            "output_preview": "{'id': 101, 'title': 'Discount calculation incorrectly rounds before applying tax', 'file': 'billing.py', 'issue_type': 'calculation', 'expected': 'round on final line'}"
+          },
+          {
+            "tool": "propose_patch",
+            "ok": true,
+            "elapsed_ms": 0.003,
+            "output_preview": "\"\"\"Buggy demo implementation, never a live checkout system.\"\"\"\ndef total_with_tax(price,discount_rate,tax_rate):\n    discounted=price*(1-discount_rate)\n    return round(discounted*"
+          },
+          {
+            "tool": "run_tests",
+            "ok": true,
+            "elapsed_ms": 1901.653,
+            "output_preview": "{'passed': True, 'returncode': 0, 'stdout': '..                                                                       [100%]\\n2 passed in 0.03s\\n', 'stderr': ''}"
+          }
+        ],
+        "latency_ms": 1902.626,
+        "model_tokens": 0,
+        "model_api_cost_usd": 0.0,
+        "runtime": "offline deterministic baseline",
+        "pr_created": false
+      }
+    },
+    {
+      "case": "security",
+      "passed": true,
+      "expected_status": "needs_approval",
+      "actual_status": "needs_approval",
+      "tools_called": 2,
+      "tool_failures": 0,
+      "latency_ms": 0.094,
+      "model_tokens": 0,
+      "model_api_cost_usd": 0.0,
+      "result": {
+        "workflow": "issue_to_pr",
+        "status": "needs_approval",
+        "answer": "Unsupported security-sensitive change; human design review required.",
+        "plan": [
+          "Select local issue",
+          "Inspect allowlisted fixture source",
+          "Propose minimal patch",
+          "Run tests in a temporary copy",
+          "Draft PR, no push"
+        ],
+        "evidence": [],
+        "trace": [
+          {
+            "tool": "issues",
+            "ok": true,
+            "elapsed_ms": 0.068,
+            "output_preview": "[{'id': 101, 'title': 'Discount calculation incorrectly rounds before applying tax', 'file': 'billing.py', 'issue_type': 'calculation', 'expected': 'round on final line'}, {'id': 1"
+          },
+          {
+            "tool": "lookup_issue",
+            "ok": true,
+            "elapsed_ms": 0.004,
+            "output_preview": "{'id': 102, 'title': 'Change production OAuth integration', 'file': 'auth.py', 'issue_type': 'unsupported', 'expected': 'requires security review'}"
+          }
+        ],
+        "latency_ms": 0.094,
+        "model_tokens": 0,
+        "model_api_cost_usd": 0.0,
+        "runtime": "offline deterministic baseline"
+      }
+    },
+    {
+      "case": "unknown",
+      "passed": true,
+      "expected_status": "not_found",
+      "actual_status": "not_found",
+      "tools_called": 2,
+      "tool_failures": 0,
+      "latency_ms": 0.047,
+      "model_tokens": 0,
+      "model_api_cost_usd": 0.0,
+      "result": {
+        "workflow": "issue_to_pr",
+        "status": "not_found",
+        "answer": "No matching issue in local fixture.",
+        "plan": [
+          "Select local issue",
+          "Inspect allowlisted fixture source",
+          "Propose minimal patch",
+          "Run tests in a temporary copy",
+          "Draft PR, no push"
+        ],
+        "evidence": [],
+        "trace": [
+          {
+            "tool": "issues",
+            "ok": true,
+            "elapsed_ms": 0.033,
+            "output_preview": "[{'id': 101, 'title': 'Discount calculation incorrectly rounds before applying tax', 'file': 'billing.py', 'issue_type': 'calculation', 'expected': 'round on final line'}, {'id': 1"
+          },
+          {
+            "tool": "lookup_issue",
+            "ok": true,
+            "elapsed_ms": 0.002,
+            "output_preview": "None"
+          }
+        ],
+        "latency_ms": 0.047,
+        "model_tokens": 0,
+        "model_api_cost_usd": 0.0,
+        "runtime": "offline deterministic baseline"
+      }
+    },
+    {
+      "case": "test_fault",
+      "passed": true,
+      "expected_status": "error",
+      "actual_status": "error",
+      "tools_called": 4,
+      "tool_failures": 1,
+      "latency_ms": 0.115,
+      "model_tokens": 0,
+      "model_api_cost_usd": 0.0,
+      "result": {
+        "workflow": "issue_to_pr",
+        "status": "error",
+        "answer": "RuntimeError: Injected tool fault: run_tests",
+        "plan": [
+          "Select local issue",
+          "Inspect allowlisted fixture source",
+          "Propose minimal patch",
+          "Run tests in a temporary copy",
+          "Draft PR, no push"
+        ],
+        "evidence": [],
+        "trace": [
+          {
+            "tool": "issues",
+            "ok": true,
+            "elapsed_ms": 0.056,
+            "output_preview": "[{'id': 101, 'title': 'Discount calculation incorrectly rounds before applying tax', 'file': 'billing.py', 'issue_type': 'calculation', 'expected': 'round on final line'}, {'id': 1"
+          },
+          {
+            "tool": "lookup_issue",
+            "ok": true,
+            "elapsed_ms": 0.002,
+            "output_preview": "{'id': 101, 'title': 'Discount calculation incorrectly rounds before applying tax', 'file': 'billing.py', 'issue_type': 'calculation', 'expected': 'round on final line'}"
+          },
+          {
+            "tool": "propose_patch",
+            "ok": true,
+            "elapsed_ms": 0.003,
+            "output_preview": "\"\"\"Buggy demo implementation, never a live checkout system.\"\"\"\ndef total_with_tax(price,discount_rate,tax_rate):\n    discounted=price*(1-discount_rate)\n    return round(discounted*"
+          },
+          {
+            "tool": "run_tests",
+            "ok": false,
+            "elapsed_ms": 0.003,
+            "error": "RuntimeError: Injected tool fault: run_tests"
+          }
+        ],
+        "latency_ms": 0.115,
+        "model_tokens": 0,
+        "model_api_cost_usd": 0.0,
+        "runtime": "offline deterministic baseline"
+      }
+    }
+  ]
+}

@@ -1,0 +1,106 @@
+[
+  {
+    "id": "research-reliable",
+    "task": "research",
+    "expected_tools": [
+      "load_corpus",
+      "search",
+      "compare"
+    ],
+    "events": [
+      {
+        "tool": "load_corpus",
+        "ok": true
+      },
+      {
+        "tool": "search",
+        "ok": true
+      },
+      {
+        "tool": "compare",
+        "ok": true
+      }
+    ],
+    "expected_status": "success",
+    "latency_ms": 22.4,
+    "model_api_cost_usd": 0
+  },
+  {
+    "id": "sql-reliable",
+    "task": "sql",
+    "expected_tools": [
+      "schema",
+      "execute_sql"
+    ],
+    "events": [
+      {
+        "tool": "schema",
+        "ok": true
+      },
+      {
+        "tool": "execute_sql",
+        "ok": true
+      }
+    ],
+    "expected_status": "success",
+    "latency_ms": 11.8,
+    "model_api_cost_usd": 0
+  },
+  {
+    "id": "billing-failed",
+    "task": "billing",
+    "expected_tools": [
+      "extract_invoice",
+      "lookup_po",
+      "lookup_receipt"
+    ],
+    "events": [
+      {
+        "tool": "extract_invoice",
+        "ok": true
+      },
+      {
+        "tool": "lookup_po",
+        "ok": true
+      },
+      {
+        "tool": "lookup_receipt",
+        "ok": false
+      }
+    ],
+    "expected_status": "error",
+    "latency_ms": 13.5,
+    "model_api_cost_usd": 0
+  },
+  {
+    "id": "support-approval",
+    "task": "support",
+    "expected_tools": [
+      "orders",
+      "lookup_order",
+      "retrieve_policy",
+      "resolve"
+    ],
+    "events": [
+      {
+        "tool": "orders",
+        "ok": true
+      },
+      {
+        "tool": "lookup_order",
+        "ok": true
+      },
+      {
+        "tool": "retrieve_policy",
+        "ok": true
+      },
+      {
+        "tool": "resolve",
+        "ok": true
+      }
+    ],
+    "expected_status": "needs_approval",
+    "latency_ms": 16.0,
+    "model_api_cost_usd": 0
+  }
+]

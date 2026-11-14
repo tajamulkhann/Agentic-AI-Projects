@@ -1,0 +1,287 @@
+{
+  "evaluation_type": "actual local executions with synthetic fixtures",
+  "cases": 5,
+  "passed": 5,
+  "task_success_rate": 1.0,
+  "tool_calls": 17,
+  "tool_failures": 1,
+  "tool_failure_rate": 0.0588,
+  "mean_latency_ms": 740.868,
+  "total_model_api_cost_usd": 0.0,
+  "model_tokens": 0,
+  "cost_note": "Offline baseline only, excludes machine/hosting cost and does not benchmark a hosted LLM.",
+  "details": [
+    {
+      "case": "discount",
+      "passed": true,
+      "expected_status": "success",
+      "actual_status": "success",
+      "tools_called": 5,
+      "tool_failures": 0,
+      "latency_ms": 1934.436,
+      "model_tokens": 0,
+      "model_api_cost_usd": 0.0,
+      "result": {
+        "workflow": "multi_agent_delivery",
+        "status": "success",
+        "answer": "Planner, developer, tester and reviewer accepted TASK-1; tests passed.",
+        "plan": [
+          "Planner: scope acceptance",
+          "Developer: implement",
+          "Tester: isolated regression",
+          "Reviewer: check output",
+          "Handoff"
+        ],
+        "evidence": [
+          {
+            "code": "def price_after_change(price):\n    return round(price * (1 - 0.1), 2)\n",
+            "test": {
+              "passed": true,
+              "stdout": ".                                                                        [100%]\n1 passed in 0.03s\n",
+              "stderr": ""
+            }
+          }
+        ],
+        "trace": [
+          {
+            "tool": "load_specs",
+            "ok": true,
+            "elapsed_ms": 0.225,
+            "output_preview": "[{'task_id': 'TASK-1', 'feature': 'discount', 'percent': 10, 'requirement': 'Calculate percentage discount with 2-decimal result', 'acceptance': {'price': 80, 'expected': 72}}, {'t"
+          },
+          {
+            "tool": "planner",
+            "ok": true,
+            "elapsed_ms": 0.003,
+            "output_preview": "{'task': 'TASK-1', 'acceptance': {'price': 80, 'expected': 72}, 'feature': 'discount'}"
+          },
+          {
+            "tool": "developer",
+            "ok": true,
+            "elapsed_ms": 0.006,
+            "output_preview": "def price_after_change(price):\n    return round(price * (1 - 0.1), 2)\n"
+          },
+          {
+            "tool": "tester",
+            "ok": true,
+            "elapsed_ms": 1933.669,
+            "output_preview": "{'passed': True, 'stdout': '.                                                                        [100%]\\n1 passed in 0.03s\\n', 'stderr': ''}"
+          },
+          {
+            "tool": "reviewer",
+            "ok": true,
+            "elapsed_ms": 0.005,
+            "output_preview": "True"
+          }
+        ],
+        "latency_ms": 1934.436,
+        "model_tokens": 0,
+        "model_api_cost_usd": 0.0,
+        "runtime": "offline deterministic baseline",
+        "handoff": "human review before deployment"
+      }
+    },
+    {
+      "case": "tax",
+      "passed": true,
+      "expected_status": "success",
+      "actual_status": "success",
+      "tools_called": 5,
+      "tool_failures": 0,
+      "latency_ms": 1769.625,
+      "model_tokens": 0,
+      "model_api_cost_usd": 0.0,
+      "result": {
+        "workflow": "multi_agent_delivery",
+        "status": "success",
+        "answer": "Planner, developer, tester and reviewer accepted TASK-2; tests passed.",
+        "plan": [
+          "Planner: scope acceptance",
+          "Developer: implement",
+          "Tester: isolated regression",
+          "Reviewer: check output",
+          "Handoff"
+        ],
+        "evidence": [
+          {
+            "code": "def price_after_change(price):\n    return round(price * (1 + 0.08), 2)\n",
+            "test": {
+              "passed": true,
+              "stdout": ".                                                                        [100%]\n1 passed in 0.03s\n",
+              "stderr": ""
+            }
+          }
+        ],
+        "trace": [
+          {
+            "tool": "load_specs",
+            "ok": true,
+            "elapsed_ms": 0.074,
+            "output_preview": "[{'task_id': 'TASK-1', 'feature': 'discount', 'percent': 10, 'requirement': 'Calculate percentage discount with 2-decimal result', 'acceptance': {'price': 80, 'expected': 72}}, {'t"
+          },
+          {
+            "tool": "planner",
+            "ok": true,
+            "elapsed_ms": 0.003,
+            "output_preview": "{'task': 'TASK-2', 'acceptance': {'price': 100, 'expected': 108}, 'feature': 'tax'}"
+          },
+          {
+            "tool": "developer",
+            "ok": true,
+            "elapsed_ms": 0.011,
+            "output_preview": "def price_after_change(price):\n    return round(price * (1 + 0.08), 2)\n"
+          },
+          {
+            "tool": "tester",
+            "ok": true,
+            "elapsed_ms": 1769.152,
+            "output_preview": "{'passed': True, 'stdout': '.                                                                        [100%]\\n1 passed in 0.03s\\n', 'stderr': ''}"
+          },
+          {
+            "tool": "reviewer",
+            "ok": true,
+            "elapsed_ms": 0.004,
+            "output_preview": "True"
+          }
+        ],
+        "latency_ms": 1769.625,
+        "model_tokens": 0,
+        "model_api_cost_usd": 0.0,
+        "runtime": "offline deterministic baseline",
+        "handoff": "human review before deployment"
+      }
+    },
+    {
+      "case": "unsafe",
+      "passed": true,
+      "expected_status": "needs_approval",
+      "actual_status": "needs_approval",
+      "tools_called": 2,
+      "tool_failures": 0,
+      "latency_ms": 0.096,
+      "model_tokens": 0,
+      "model_api_cost_usd": 0.0,
+      "result": {
+        "workflow": "multi_agent_delivery",
+        "status": "needs_approval",
+        "answer": "Unsupported feature requires architecture review.",
+        "plan": [
+          "Planner: scope acceptance",
+          "Developer: implement",
+          "Tester: isolated regression",
+          "Reviewer: check output",
+          "Handoff"
+        ],
+        "evidence": [],
+        "trace": [
+          {
+            "tool": "load_specs",
+            "ok": true,
+            "elapsed_ms": 0.069,
+            "output_preview": "[{'task_id': 'TASK-1', 'feature': 'discount', 'percent': 10, 'requirement': 'Calculate percentage discount with 2-decimal result', 'acceptance': {'price': 80, 'expected': 72}}, {'t"
+          },
+          {
+            "tool": "planner",
+            "ok": true,
+            "elapsed_ms": 0.002,
+            "output_preview": "None"
+          }
+        ],
+        "latency_ms": 0.096,
+        "model_tokens": 0,
+        "model_api_cost_usd": 0.0,
+        "runtime": "offline deterministic baseline"
+      }
+    },
+    {
+      "case": "missing",
+      "passed": true,
+      "expected_status": "not_found",
+      "actual_status": "not_found",
+      "tools_called": 1,
+      "tool_failures": 0,
+      "latency_ms": 0.116,
+      "model_tokens": 0,
+      "model_api_cost_usd": 0.0,
+      "result": {
+        "workflow": "multi_agent_delivery",
+        "status": "not_found",
+        "answer": "Task not found",
+        "plan": [
+          "Planner: scope acceptance",
+          "Developer: implement",
+          "Tester: isolated regression",
+          "Reviewer: check output",
+          "Handoff"
+        ],
+        "evidence": [],
+        "trace": [
+          {
+            "tool": "load_specs",
+            "ok": true,
+            "elapsed_ms": 0.1,
+            "output_preview": "[{'task_id': 'TASK-1', 'feature': 'discount', 'percent': 10, 'requirement': 'Calculate percentage discount with 2-decimal result', 'acceptance': {'price': 80, 'expected': 72}}, {'t"
+          }
+        ],
+        "latency_ms": 0.116,
+        "model_tokens": 0,
+        "model_api_cost_usd": 0.0,
+        "runtime": "offline deterministic baseline"
+      }
+    },
+    {
+      "case": "failure",
+      "passed": true,
+      "expected_status": "error",
+      "actual_status": "error",
+      "tools_called": 4,
+      "tool_failures": 1,
+      "latency_ms": 0.068,
+      "model_tokens": 0,
+      "model_api_cost_usd": 0.0,
+      "result": {
+        "workflow": "multi_agent_delivery",
+        "status": "error",
+        "answer": "RuntimeError: Injected tool fault: tester",
+        "plan": [
+          "Planner: scope acceptance",
+          "Developer: implement",
+          "Tester: isolated regression",
+          "Reviewer: check output",
+          "Handoff"
+        ],
+        "evidence": [],
+        "trace": [
+          {
+            "tool": "load_specs",
+            "ok": true,
+            "elapsed_ms": 0.033,
+            "output_preview": "[{'task_id': 'TASK-1', 'feature': 'discount', 'percent': 10, 'requirement': 'Calculate percentage discount with 2-decimal result', 'acceptance': {'price': 80, 'expected': 72}}, {'t"
+          },
+          {
+            "tool": "planner",
+            "ok": true,
+            "elapsed_ms": 0.002,
+            "output_preview": "{'task': 'TASK-1', 'acceptance': {'price': 80, 'expected': 72}, 'feature': 'discount'}"
+          },
+          {
+            "tool": "developer",
+            "ok": true,
+            "elapsed_ms": 0.006,
+            "output_preview": "def price_after_change(price):\n    return round(price * (1 - 0.1), 2)\n"
+          },
+          {
+            "tool": "tester",
+            "ok": false,
+            "elapsed_ms": 0.003,
+            "error": "RuntimeError: Injected tool fault: tester"
+          }
+        ],
+        "latency_ms": 0.068,
+        "model_tokens": 0,
+        "model_api_cost_usd": 0.0,
+        "runtime": "offline deterministic baseline"
+      }
+    }
+  ]
+}

@@ -1,0 +1,6 @@
+case,passed,expected_status,actual_status,tools_called,tool_failures,latency_ms,model_tokens,model_api_cost_usd
+category,True,success,success,2,0,2.384,0,0.0
+customer,True,success,success,2,0,1.812,0,0.0
+monthly,True,success,success,2,0,1.345,0,0.0
+blocked_write,True,rejected,rejected,0,0,0.004,0,0.0
+fault,True,error,error,2,1,0.767,0,0.0
